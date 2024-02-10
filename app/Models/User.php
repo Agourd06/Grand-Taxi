@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function chauffeur()
     {
-        return $this->hasOne(Chauffeur::class);
+        return $this->hasOne(Chauffeur::class , 'user_id');
     }
     public function passager()
     {

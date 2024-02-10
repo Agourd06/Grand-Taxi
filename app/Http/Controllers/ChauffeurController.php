@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Chauffeur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,4 +25,38 @@ class ChauffeurController extends Controller
         $chauffeur->save();
         return redirect('/chauffeur');
     }
+    public function trip(Request $request)
+    {
+        $trip = $request->validate([
+            'Depart' => 'required',
+            'Destination' => 'required',
+        ], [
+
+            'Depart.*' => 'Departure is required',
+            'Destination.*' => 'Destination is required',
+
+        ]);
+
+        $user = Auth::user();
+        $chauffeur = $user->chauffeur;
+        $chauffeur->Depart = $trip['Depart'];
+        $chauffeur->Destination = $trip['Destination'];
+        $chauffeur->save();
+        return redirect('/chauffeur');
+    }
+    public function showUserProfile()
+    {
+        try {
+            $userId = Auth::id();
+            $user = User::findOrFail($userId);
+            $chauffeur = $user->chauffeur;
+    
+            return view('drivers.ChauffeurProfil', ['user' => $user, 'chauffeur' => $chauffeur]);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->view('errors.404', [], 404);
+        }
+    }
+    
+    
+    
 }
