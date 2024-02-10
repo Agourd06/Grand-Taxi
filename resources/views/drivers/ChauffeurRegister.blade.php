@@ -20,7 +20,7 @@
         <div class="relative -mt-40 m-4 ">
             <div class="max-w-4xl mx-auto font-[sans-serif] text-[#333] p-6 rounded-md shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] bg-white">
                 <div class="text-center mb-16">
-                    <a href="javascript:void(0)"><img src="https://readymadeui.com/readymadeui.svg" alt="logo"
+                    <a href="javascript:void(0)"><img src="{{ asset('storage/image/' . 'taxista.png') }}" alt="logo"
                             class='w-52 inline-block' />
                     </a>
                     <h4 class="text-base font-semibold mt-3">Sign up into your account</h4>
@@ -117,6 +117,8 @@
                             Sign up
                         </button>
                     </div>
+                    <p class="text-sm mt-8 text-center">Already have an account? <a href="/" class="text-[#EACE00] font-semibold hover:underline ml-1">Login here</a></p>
+
                 </form>
             </div>
         </div>

@@ -37,6 +37,7 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
+        // user validation
         $userData = $request->validate([
             'name' => ['required', 'min:3', 'max:16', Rule::unique('users', 'name')],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
@@ -65,7 +66,7 @@ class RegisterController extends Controller
             'profile_image.max' => 'The image must not be larger than 2048 kilobytes.',
         ]);
         if ($userData['role'] === 'passager') {
-
+// passager validation
             $passagerData = $request->validate([
                 'phone' => 'required',
 
@@ -74,20 +75,20 @@ class RegisterController extends Controller
 
             ]);
         } else if ($userData['role'] === 'chauffeur') {
-
+// Driver validation
 
             $chauffeurData = $request->validate([
                 'Description' => 'required',
                 'immatricule' => 'required',
                 'Desponability' => 'required|in:Available,Reserved,In Use',
-                'VoitureType' => 'required',
-                'TypeDePayment' => 'required',
+                'VoitureType' => 'required|in:Taxi,Honda,Bus',
+                'TypeDePayment' => 'required|in:Cash,Carte',
             ], [
                 'Description.required' => 'Description is required.',
                 'immatricule.required' => 'Car registration is required.',
                 'Desponability.*' => 'Availability is required Or invalide data.',
-                'VoitureType.*' => 'Car Type is required Or invalide data..',
-                'TypeDePayment.*' => 'Payment Type is required Or invalide data..',
+                'VoitureType.*' => 'Car Type is required Or invalide data.',
+                'TypeDePayment.*' => 'Payment Type is required Or invalide data.',
             ]);
         }
 
@@ -115,16 +116,18 @@ class RegisterController extends Controller
 
             $passagerData['user_id'] = $user->id;
             Passager::create($passagerData);
+            auth()->login($user);
 
-            return redirect('/');
+            return redirect('/passager');
         } else if ($userData['role'] == 'chauffeur') {
             // Assign user_id create Chauffeur
 
 
             $chauffeurData['user_id'] = $user->id;
             Chauffeur::create($chauffeurData);
+            auth()->login($user);
 
-            return redirect('/');
+            return redirect('/chauffeur');
         }
     }
 

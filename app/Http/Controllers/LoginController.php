@@ -32,12 +32,14 @@ class LoginController extends Controller
             return redirect('/admin');
         }
 
-        return redirect('/dashboard');
     } else {
-        return redirect('/')
-            ->withErrors(['login' => 'Invalid credentials'])
-            ->withInput();
+        return redirect('/');
+           
     }
 }
-
+public function logout()
+    {
+        auth()->logout();
+        return redirect('/');
+    }
 }

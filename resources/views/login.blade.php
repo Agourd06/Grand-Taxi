@@ -49,8 +49,9 @@
                         Log in
                     </button>
                 </div>
-                <p class="text-sm mt-10 text-center">Don't have an account <a href=""
-                        class="text-[#EACE00] font-semibold hover:underline ml-1">Register here</a></p>
+                <p class="text-sm mt-10 text-center">Don't have an account Register here<a href="/PaRegister"
+                        class="text-[#EACE00] font-semibold hover:underline ml-1">As Passenger </a>Or<a href="/ChauRegister"
+                        class="text-[#EACE00] font-semibold hover:underline ml-1">As Driver</a></p>
             </form>
             <div
                 class="md:h-[70%]  md:py-6  flex items-center relative max-md:before:hidden before:absolute before:bg-gradient-to-r before:from-gray-50 before:via-[#EACE00] before:to-black before:h-full before:w-3/4 before:right-0 before:z-0">

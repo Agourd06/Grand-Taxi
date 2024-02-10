@@ -55,4 +55,18 @@ class User extends Authenticatable
     {
         return $this->hasOne(Admin::class);
     }
+    public function isAdmin()
+    {
+        return $this->admin !== null;
+    }
+
+    public function isChauffeur()
+    {
+        return $this->chauffeur !== null;
+    }
+
+    public function isPassager()
+    {
+        return $this->passager !== null;
+    }
 }

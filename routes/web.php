@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PassagerController;
-use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ChauffeurController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,31 +19,37 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('login');
-});
+})->middleware(RedirectIfAuthenticated::class);
 
-
-
-
-Route::get('/PaRegister', function () {
-    return view('PassagerRegister');
-});
-Route::get('/ChauRegister', function () {
-    return view('ChauffeurRegister');
-});
 Route::middleware(['auth', 'role:chauffeur'])->group(function () {
     Route::get('/chauffeur', function () {
-        return view('chauffeur');
+        return view('drivers/chauffeur');
     });
 });
+
 Route::middleware(['auth', 'role:passager'])->group(function () {
     Route::get('/passager', function () {
-        return view('passager');
+        return view('passengers/passager');
     });
 });
+
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin', function () {
-        return view('admin');
+        return view('admin/admin');
     });
 });
-Route::post('/passenger', [RegisterController::class, 'store']);
-Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/PaRegister', function () {
+    return view('passengers/PassagerRegister');
+})->middleware(RedirectIfAuthenticated::class);
+
+Route::get('/ChauRegister', function () {
+    return view('drivers/ChauffeurRegister');
+})->middleware(RedirectIfAuthenticated::class);
+
+Route::post('/passenger', [RegisterController::class, 'store'])->middleware(RedirectIfAuthenticated::class);
+Route::post('/login', [LoginController::class, 'login'])->middleware(RedirectIfAuthenticated::class);
+    Route::get('/logout', [LoginController::class, 'logout']);
+    Route::post('/availibality', [ChauffeurController::class, 'availibality']);
+
+

@@ -16,6 +16,6 @@ class CheckRole
             return $next($request);
         }
 
-        return redirect('/')->with('error', 'You do not have permission to access this page.');
+        return redirect('/');
     }
 }
