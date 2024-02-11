@@ -102,7 +102,7 @@
                         <div class="bg-gray-50 w-full px-4 py-3 sm:px-6 gap-y-4 flex justify-end flex-col md:flex-row">
                             <button id="" type="submit"
                                 class="w-full  inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-black text-base font-medium text-white hover:bg-[#EACE00] duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
-                                Add Specialty
+                                Confirm
                             </button>
                             <button id="closeModalButton" type="button"
                                 class="w-full  inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-800 text-base font-medium text-white duration-300 hover:bg-[#EACE00] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:ml-3 sm:w-auto sm:text-sm">
@@ -123,6 +123,8 @@
 
                     <select id="countries" name="Desponability"
                         class="bg-gray-50 border border-[#EACE00] text-gray-900 text-sm rounded-lg outline-none focus:ring-[#EACE00] focus:border-[#EACE00] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option disabled selected>You Are : {{ $chauffeur->Desponability }}</option>
+
                         <option value="Available">Available</option>
                         <option value="Reserved">Reserved</option>
                         <option value="In Use">In Use</option>

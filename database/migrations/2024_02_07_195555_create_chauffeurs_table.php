@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('immatricule');
             $table->enum('Desponability', ['Available', 'Reserved' , 'In Use'])->default('Available');
             $table->string('VoitureType');
-            $table->string('Depart')->nullable();
-            $table->string('Destination')->nullable();
+            $table->string('trip')->nullable();
             $table->string('TypeDePayment');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();

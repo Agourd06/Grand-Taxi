@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PassagerController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ChauffeurController;
 use App\Http\Middleware\RedirectIfAuthenticated;
@@ -26,22 +27,24 @@ Route::get('/', function () {
 //voir le role qui peux acess a c'est page seulment
 
 Route::middleware(['auth', 'role:chauffeur'])->group(function () {
-    Route::get('/chauffeur', function () {
-        return view('drivers/chauffeur');
-    });
-    // Route::get('/DriverProfil', function () {
-    //     return view('drivers/ChauffeurProfil');
-    // });
+  
+   
 
     Route::get('/DriverProfil', [ChauffeurController::class, 'showUserProfile'])->name('driver.profile');
+    Route::get('/chauffeur', [ChauffeurController::class, 'Disponibility'])->name('driver');
 
 });
 //voir le role qui peux acess a c'est page seulment
 
 Route::middleware(['auth', 'role:passager'])->group(function () {
-    Route::get('/passager', function () {
-        return view('passengers/passager');
+ 
+    Route::get('/passager', [PassagerController::class, 'DriversPassanger']);
+    Route::post('/filter', [PassagerController::class, 'DriversPassanger']);
+    Route::post('/Reserve', [PassagerController::class, 'Reservation']);
+    Route::get('/reserveration', function () {
+        return view('passengers/AddReservation');
     });
+
 });
 //voir le role qui peux acess a c'est page seulment
 

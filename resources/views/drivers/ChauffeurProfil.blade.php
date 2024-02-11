@@ -104,7 +104,7 @@
                     <div class="bg-gray-50 w-full px-4 py-3 sm:px-6 gap-y-4 flex justify-end flex-col md:flex-row">
                         <button id="" type="submit"
                             class="w-full  inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-black text-base font-medium text-white hover:bg-[#EACE00] duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
-                            Add Specialty
+                            Confirm
                         </button>
                         <button id="closeModalButton" type="button"
                             class="w-full  inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-800 text-base font-medium text-white duration-300 hover:bg-[#EACE00] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:ml-3 sm:w-auto sm:text-sm">
@@ -204,18 +204,13 @@
                     <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4 mt-6">
 
                         <div class="form-item w-full">
-                            <label class="text-xl ">Departure</label>
-                            <input type="text" value="{{ $chauffeur->Depart }}"
+                            <label class="text-xl ">Departure - Destination</label>
+                            <input type="text" value="{{ $chauffeur->trip }}"
                                 class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
                                 disabled>
                         </div>
 
-                        <div class="form-item w-full">
-                            <label class="text-xl ">Destination</label>
-                            <input type="text" value="{{ $chauffeur->Destination }}"
-                                class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
-                                disabled>
-                        </div>
+                    
                     </div>
 
                     <div>

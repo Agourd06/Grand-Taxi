@@ -39,8 +39,7 @@ class ChauffeurController extends Controller
 
         $user = Auth::user();
         $chauffeur = $user->chauffeur;
-        $chauffeur->Depart = $trip['Depart'];
-        $chauffeur->Destination = $trip['Destination'];
+        $chauffeur->trip = $trip['Depart'].'-'.$trip['Destination'];
         $chauffeur->save();
         return redirect('/chauffeur');
     }
@@ -57,6 +56,17 @@ class ChauffeurController extends Controller
         }
     }
     
+    public function Disponibility()
+    {
+        try {
+            $userId = Auth::id();
+            $user = User::findOrFail($userId);
+            $chauffeur = $user->chauffeur;
     
+            return view('drivers.chauffeur', ['chauffeur' => $chauffeur]);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->view('errors.404', [], 404);
+        }
+    }
     
 }
