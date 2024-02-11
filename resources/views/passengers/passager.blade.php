@@ -142,7 +142,7 @@
                                     <p> {{ $chauffeur->Desponability }}</p>
 
 
-    {{----------------------------- Condition For Dispo icon ---------------------------}}
+                                    {{-- --------------------------- Condition For Dispo icon ------------------------- --}}
 
 
                                     @if ($chauffeur->Desponability === 'Available')
@@ -152,7 +152,7 @@
                                             style="width: 15px; height: 15px; " lazy="loaded">
                                     @endif
 
-    {{----------------------------- Condition For Dispo icon ---------------------------}}
+                                    {{-- --------------------------- Condition For Dispo icon ------------------------- --}}
 
                                 </div>
                                 <div class="flex gap-2 justify-center  mb-4 md:justify-start">
@@ -169,9 +169,9 @@
                             <p class="md:ml-4 lg:ml-0 font-bold text-[10px] md:text-[17px]">Today Trip :
                                 {{ $chauffeur->trip }}
                             </p>
-                            <form action="/Reserve" method="post">
+                            <form action="/reserveration" method="post">
                                 @csrf
-                                <input type="hidden" value="{{ $chauffeur->id }}">
+                                <input type="hidden" value="{{ $chauffeur->id }}" name="driverId">
                                 <button type="submit" name="wikiId"
                                     class=" md:w-[150px] w-[70px] text-[10px] md:text-[15px] h-[40px] md:mr-4 lg:mr-0 bg-black rounded duration-300 hover:bg-[#EACE00]  text-white"
                                     value="">Reserve Road</button>
@@ -209,8 +209,7 @@
                 </div>
                 <hr class="my-6 border-gray-300" />
                 <p class="text-center text-gray-700 text-base">
-                    Copyright © {{ date('Y') }} <a href="/passager" 
-                        class="hover:underline mx-1">Taxista</a>
+                    Copyright © {{ date('Y') }} <a href="/passager" class="hover:underline mx-1">Taxista</a>
                     All Rights Reserved.
                 </p>
 

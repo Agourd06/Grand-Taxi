@@ -40,10 +40,9 @@ Route::middleware(['auth', 'role:passager'])->group(function () {
  
     Route::get('/passager', [PassagerController::class, 'DriversPassanger']);
     Route::post('/filter', [PassagerController::class, 'DriversPassanger']);
-    Route::post('/Reserve', [PassagerController::class, 'Reservation']);
-    Route::get('/reserveration', function () {
-        return view('passengers/AddReservation');
-    });
+    Route::match(['get', 'post'],'/confirmeResrvation', [PassagerController::class, 'confirmeResrvations']);
+    Route::match(['get', 'post'], '/reserveration', [PassagerController::class, 'Resevationdata'])->name('reserve.post');
+
 
 });
 //voir le role qui peux acess a c'est page seulment

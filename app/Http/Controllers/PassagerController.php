@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chauffeur;
+use App\Models\reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PassagerController extends Controller
 {
@@ -25,7 +27,6 @@ class PassagerController extends Controller
             return view('passengers.passager', [
                 'chauffeurs' => $chauffeurs,
                 'filtarge' => $filtarge,
-                'reservationtrip' => $reservationtrip,
             ]);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->view('errors.404', [], 404);
@@ -40,12 +41,35 @@ class PassagerController extends Controller
             $reservationtrip = '';
         }
         
-        return view('passengers.passager', [
+        return view('passengers.AddReservation', [
             
-            'reservationtrip' => $reservationtrip,
+            'DriverReservationtrip' => $reservationtrip,
         ]);
     } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
         return response()->view('errors.404', [], 404);
     }
     }
+    public function confirmeResrvations(Request $request){
+        $data = $request->validate([
+            'trip' => 'required',
+            'date' => 'required',
+            'driver' => 'required',
+            'driverId' => 'required',
+        ],
+    [
+        'date.*' => 'Can You Give your trip a date'
+    ]);
+    $passagerId = Auth::id();
+
+    $resrvation = new reservation;
+    $resrvation->trip = $data['trip'];
+    $resrvation->date = $data['date'];
+    $resrvation->Chauffeur_id = $data['driverId'];
+    $resrvation->passager_id = $passagerId;
+    
+    $resrvation->save();
+
+    return redirect('/passager');
+
+    } 
 }

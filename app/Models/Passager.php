@@ -15,5 +15,8 @@ class passager extends User
         'phone',
         'user_id'
     ];
-
+    public function reservation()
+    {
+        return $this->hasMany(reservation::class , 'passager_id');
+    }
 }

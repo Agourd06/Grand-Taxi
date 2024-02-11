@@ -19,5 +19,8 @@ class Chauffeur extends User
         'TypeDePayment',
         'user_id',
     ];
-    
+    public function reservation()
+    {
+        return $this->hasMany(reservation::class , 'Chauffeur_id');
+    }
 }

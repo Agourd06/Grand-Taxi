@@ -56,8 +56,8 @@
 
             <ul id="collapseMenu"
                 class='lg:!flex justify-center lg:space-x-10 max-lg:space-y-3 max-lg:hidden w-full max-lg:mt-2'>
-                <li class='max-lg:border-b max-lg:py-2'><a href='javascript:void(0)'
-                        class='hover:text-[#EACE00] text-black font-bold text-[15px] block'>Today Trip</a></li>
+                <li class='max-lg:border-b max-lg:py-2'><a href='/passager'
+                        class='hover:text-[#EACE00] text-black font-bold text-[15px] block'>Drivers</a></li>
                 <li class='max-lg:border-b max-lg:py-2'><a href='javascript:void(0)'
                         class='hover:text-[#EACE00] text-black font-bold text-[15px] block'>History</a></li>
 
@@ -73,32 +73,34 @@
                         class='w-full h-full inline-block' />
                 </a>
             </div>
-            <form class="mt-12">
+            <form class="mt-12" action="/confirmeResrvation" method="POST">
+                @csrf
                 <h3 class="text-xl font-bold text-gray-300 mb-8 text-center">Reserve Now</h3>
                 <div class="space-y-4">
-
-
-                    <div> <label for="trip"> Your Trip</label>
-                        <input name="trip" type="text"
+            
+                    <div>
+                        <label for="trip"> Your Trip</label>
+                        <input name="trip" type="text" value="{{ optional($DriverReservationtrip)->trip ?? '' }}" readonly
                             class="bg-gray-100 w-full text-sm px-4 py-4 focus:bg-transparent outline-orange-300 transition-all"
-                            placeholder="Enter name" />
+                        />
                     </div>
-
-
-                    <div> <label for="date"> Trip Date</label>
+            
+                    <div>
+                        <label for="date"> Trip Date</label>
                         <input name="date" type="date"
                             class="bg-gray-100 w-full text-sm px-4 py-4 focus:bg-transparent outline-orange-300 transition-all"
                             placeholder="Enter email" />
                     </div>
-
+            
                     <div>
                         <label for="driver"> Your Driver</label>
-                        <input name="driver" type="text"
+                        <input name="driver" type="text" value="{{ optional($DriverReservationtrip)->user->name ?? '' }}" readonly
                             class="bg-gray-100 w-full text-sm px-4 py-4 focus:bg-transparent outline-orange-300 transition-all"
-                            placeholder="Enter password" />
+                        />
                     </div>
-
-
+            
+                    <input type="hidden" name="driverId" value="{{ optional($DriverReservationtrip)->id ?? '' }}">
+            
                 </div>
                 <div class="mt-8">
                     <button type="submit"
@@ -106,8 +108,8 @@
                         Reserve Trip
                     </button>
                 </div>
-                
             </form>
+            
         </div>
     </div>
 </section>
