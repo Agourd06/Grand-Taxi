@@ -27,23 +27,22 @@ Route::get('/', function () {
 //voir le role qui peux acess a c'est page seulment
 
 Route::middleware(['auth', 'role:chauffeur'])->group(function () {
-  
-   
+
+
 
     Route::get('/DriverProfil', [ChauffeurController::class, 'showUserProfile'])->name('driver.profile');
     Route::get('/chauffeur', [ChauffeurController::class, 'Disponibility'])->name('driver');
-
 });
 //voir le role qui peux acess a c'est page seulment
 
 Route::middleware(['auth', 'role:passager'])->group(function () {
- 
+
+    Route::get('/profilPassager', [PassagerController::class, 'showUserProfile']);
+
     Route::get('/passager', [PassagerController::class, 'DriversPassanger']);
     Route::post('/filter', [PassagerController::class, 'DriversPassanger']);
-    Route::match(['get', 'post'],'/confirmeResrvation', [PassagerController::class, 'confirmeResrvations']);
+    Route::match(['get', 'post'], '/confirmeResrvation', [PassagerController::class, 'confirmeResrvations']);
     Route::match(['get', 'post'], '/reserveration', [PassagerController::class, 'Resevationdata'])->name('reserve.post');
-
-
 });
 //voir le role qui peux acess a c'est page seulment
 

@@ -65,6 +65,8 @@
                                 class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
                                 placeholder="xxxxxxx" />
                         </div>
+
+                        
                         <div>
                             <label class="text-sm mb-2 block">Availability</label>
                             <select name="Desponability" type="text" value="{{old('Desponability')}}"
