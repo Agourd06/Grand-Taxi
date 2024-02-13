@@ -37,7 +37,14 @@ Route::middleware(['auth', 'role:chauffeur'])->group(function () {
 
 Route::middleware(['auth', 'role:passager'])->group(function () {
 
+    // Route::get('/PaHistory', function () {
+    //     return view('passengers/HistoriquePassager');
+    // });
+    
     Route::get('/profilPassager', [PassagerController::class, 'showUserProfile']);
+    Route::get('/PaHistory', [PassagerController::class, 'showPaHistory']);
+    Route::post('/favorit', [PassagerController::class, 'favorit']);
+    Route::post('/noter', [PassagerController::class, 'noter']);
 
     Route::get('/passager', [PassagerController::class, 'DriversPassanger']);
     Route::post('/filter', [PassagerController::class, 'DriversPassanger']);
@@ -46,7 +53,7 @@ Route::middleware(['auth', 'role:passager'])->group(function () {
 });
 //voir le role qui peux acess a c'est page seulment
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
+Route::middleware(['auth', 'role:admin'])->group(function () {  
     Route::get('/admin', function () {
         return view('admin/admin');
     });

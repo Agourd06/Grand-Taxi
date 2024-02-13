@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Log;
 use App\Models\User;
+use App\Models\route;
 use App\Models\Chauffeur;
 use App\Models\reservation;
 use Illuminate\Http\Request;
@@ -19,7 +21,8 @@ class PassagerController extends Controller
                 // $chauffeurs = Chauffeur::with('user')->where('Desponability', 'Available')->where('trip', $request->input('filtertrip'))->get();
 
                 $query = $query->where('trip', $request->input('filtertrip'));
-            } if ($request->input('filterCars')) {
+            }
+            if ($request->input('filterCars')) {
                 $query = $query->where('VoitureType', $request->input('filterCars'));
 
                 // $chauffeurs = Chauffeur::with('user')->where('Desponability', 'Available')->where('VoitureType', $request->input('filterCars'))->get();
@@ -27,15 +30,18 @@ class PassagerController extends Controller
             //  else {
             //     $chauffeurs = Chauffeur::with('user')->where('Desponability', 'Available')->get();
             // }
-            $filtarge = Chauffeur::with('user')->where('Desponability', 'Available')->get();
+            $trips = Chauffeur::with('user')->where('Desponability', 'Available')->groupBy('trip')->get();
+            $carTypes = Chauffeur::with('user')->where('Desponability', 'Available')->groupBy('VoitureType')->get();
             $chauffeurs = $query->get();
-
-
             
+         
+
+
 
             return view('passengers.passager', [
                 'chauffeurs' => $chauffeurs,
-                'filtarge' => $filtarge,
+                'trips' => $trips,
+                'carTypes' => $carTypes,
             ]);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->view('errors.404', [], 404);
@@ -72,14 +78,26 @@ class PassagerController extends Controller
             ]
         );
         $passagerId = Auth::id();
-
+        // Create new reservation 
         $resrvation = new reservation;
         $resrvation->trip = $data['trip'];
         $resrvation->date = $data['date'];
         $resrvation->Chauffeur_id = $data['driverId'];
         $resrvation->passager_id = $passagerId;
 
+
         $resrvation->save();
+        // Create new Road
+        $route = new route;
+        $route->trip = $data['trip'];
+        $route->date = $data['date'];
+        $route->Chauffeur_id = $data['driverId'];
+        $route->passager_id = $passagerId;
+
+        $route->save();
+
+
+
 
         return redirect('/passager');
     }
@@ -89,11 +107,59 @@ class PassagerController extends Controller
             $userId = Auth::id();
             $user = User::findOrFail($userId);
             $passager = $user->Passager;
-    
+
             return view('passengers.PassagerProfil', ['user' => $user, 'passager' => $passager]);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->view('errors.404', [], 404);
         }
     }
+    public function showPaHistory()
+    {
+        try {
+            $passagerId = Auth::id();
+            
+            $routes = Route::with('passager.user')
+            ->where('passager_id', $passagerId)
+            ->get();
+
+            return view('passengers.HistoriquePassager', ['routes' => $routes]);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->view('errors.404', [], 404);
+        }
+    }
+    public function favorit(Request $request){
+        $request->validate([
+            'favori' => 'required',
+            'routeId' => 'required',
+
+        ]);
+
+      
+        
+
+        Route::where('id', $request->routeId)
+        ->update([
+            'favori' => $request->favori,
     
+        ]);
+        return redirect( '/PaHistory');
+
+    }
+    public function noter(Request $request){
+        $request->validate([
+            'note' => 'required',
+
+        ]);
+
+      
+        
+
+        Route::where('id', $request->routeId)
+        ->update([
+            'note' => $request->favori,
+    
+        ]);
+        return redirect( '/PaHistory');
+
+    }
 }

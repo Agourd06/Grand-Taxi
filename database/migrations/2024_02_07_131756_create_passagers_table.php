@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('passagers', function (Blueprint $table) {
             $table->id();
             $table->string('Phone');
+            $table->enum('archive', ['1', '0'])->default('0');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

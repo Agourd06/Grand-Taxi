@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
                 } elseif (auth()->user()->isPassager()) {
                     return redirect('/passager');
                 } else {
-                    return redirect(RouteServiceProvider::HOME);
+                    return redirect('/');
                 }
             }
         }

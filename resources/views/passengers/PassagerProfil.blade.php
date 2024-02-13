@@ -25,12 +25,12 @@
 
                 <div class="relative inline-block border-gray-300 border-l-2 pl-6 cursor-pointer " id="Profil">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"
-                    class="hover:fill-[#EACE00]">
-                    <circle cx="10" cy="7" r="6" data-original="#000000" />
-                    <path
-                      d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
-                      data-original="#000000" />
-                  </svg>
+                        class="hover:fill-[#EACE00]">
+                        <circle cx="10" cy="7" r="6" data-original="#000000" />
+                        <path
+                            d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
+                            data-original="#000000" />
+                    </svg>
                     <div class="absolute  w-[120px] hidden h-[85px] top-full rounded-md right-2 drop-shadow-2xl"
                         id="ProfilPop">
                         <a href='/passager'
@@ -59,7 +59,7 @@
                 class='lg:!flex justify-center lg:space-x-10 max-lg:space-y-3 max-lg:hidden w-full max-lg:mt-2'>
                 <li class='max-lg:border-b max-lg:py-2' id="addTripButton"><a href='javascript:void(0)'
                         class='hover:text-[#EACE00] text-black font-bold text-[15px] block'>Today Trip</a></li>
-                <li class='max-lg:border-b max-lg:py-2'><a href='javascript:void(0)'
+                <li class='max-lg:border-b max-lg:py-2'><a href='/PaHistory'
                         class='hover:text-[#EACE00] text-black font-bold text-[15px] block'>History</a></li>
 
             </ul>
@@ -92,12 +92,12 @@
                                 <label for="name" class="block text-sm font-medium text-gray-700 mt-2">
                                     Departure :</label>
                                 <input type="text" name="Depart" id="depart"
-                                    class="mt-1 p-2 block w-full border-gray-300 rounded-md outline-none border border-solid border-black"
+                                    class="mt-1 p-2 block w-full border-gray-300 rounded-md outline-none border border-solid "
                                     placeholder="Enter Departure">
                                 <label for="name" class="block text-sm font-medium text-gray-700 mt-2">
                                     Destination :</label>
                                 <input type="text" name="Destination" id="name"
-                                    class="mt-1 p-2 block w-full border-gray-300 rounded-md outline-none border border-solid border-black"
+                                    class="mt-1 p-2 block w-full border-gray-300 rounded-md outline-none border border-solid "
                                     placeholder="Enter Destination">
                             </div>
                         </div>
@@ -153,14 +153,14 @@
                         <div class="form-item w-full">
                             <label class="text-xl ">Full Name</label>
                             <input type="text" value="{{ $user->name }}"
-                                class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
+                                class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 "
                                 disabled>
                         </div>
 
                         <div class="form-item w-full">
                             <label class="text-xl ">Email</label>
                             <input type="text" value="{{ $user->email }}"
-                                class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
+                                class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 "
                                 disabled>
                         </div>
                     </div>
@@ -170,14 +170,14 @@
                         <div class="form-item w-full">
                             <label class="text-xl ">Phone Number</label>
                             <input type="text" value="{{ $passager->Phone }}"
-                                class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
+                                class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 "
                                 disabled>
                         </div>
 
-                      
+
                     </div>
 
-               
+
 
 
 
@@ -186,6 +186,34 @@
             </div>
 
 
+        </div>
+        <div class="min-h-screen bg-gray-300 py-6 flex flex-col justify-center sm:py-12">
+            <div class="py-3 sm:max-w-xl sm:mx-auto">
+                <div class="bg-white min-w-1xl flex flex-col rounded-xl shadow-lg">
+                    <div class="px-12 py-5">
+                        <h2 class="text-gray-800 text-3xl font-semibold">Your opinion matters to us!</h2>
+                    </div>
+                    <div class="bg-gray-200 w-full flex flex-col items-center">
+                        <div class="flex flex-col items-center py-6 space-y-3">
+                            <span class="text-lg text-gray-800">How was quality of the call?</span>
+                            <div class="flex space-x-3">
+                          <button class="w-[50px] text-[20px] text-bold hover:bg-sky-400 h-[50px] rounded-md bg-sky-200 flex justify-center items-center ">1</buttonv>
+                          <button class="w-[50px] text-[20px] text-bold hover:bg-sky-400 h-[50px] rounded-md bg-sky-200 flex justify-center items-center">2</button>
+                          <button class="w-[50px] text-[20px] text-bold hover:bg-sky-400 h-[50px] rounded-md bg-sky-200 flex justify-center items-center">3</button>
+                          <button class="w-[50px] text-[20px] text-bold hover:bg-sky-400 h-[50px] rounded-md bg-sky-200 flex justify-center items-center">4</button>
+                          <button class="w-[50px] text-[20px] text-bold hover:bg-sky-400 h-[50px] rounded-md bg-sky-200 flex justify-center items-center">5</button>
+                            </div>
+                        </div>
+                        <button class="py-3 my-8 text-lg bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white">Rate now</button>
+                  
+                    </div>
+                    <div class="h-20 flex items-center justify-center">
+                        <a href="#" class="text-gray-600">Maybe later</a>
+                    </div>
+                </div>
+
+             
+            </div>
         </div>
     </div>
     <script>
@@ -196,7 +224,6 @@
 
 
         document.getElementById('Profil').addEventListener('click', () => toggleModal('ProfilPop'));
-   
     </script>
 </body>
 

@@ -58,7 +58,7 @@
                 class='lg:!flex justify-center lg:space-x-10 max-lg:space-y-3 max-lg:hidden w-full max-lg:mt-2'>
                 <li class='max-lg:border-b max-lg:py-2'><a href='javascript:void(0)'
                         class='hover:text-[#EACE00] text-black font-bold text-[15px] block'>Today Trip</a></li>
-                <li class='max-lg:border-b max-lg:py-2'><a href='javascript:void(0)'
+                <li class='max-lg:border-b max-lg:py-2'><a href='/PaHistory'
                         class='hover:text-[#EACE00] text-black font-bold text-[15px] block'>History</a></li>
 
             </ul>
@@ -94,7 +94,8 @@
                         class="border-0 cursor-pointer rounded-full outline-none  drop-shadow-md bg-black text-white hover:text-black w-60 md:w-40 duration-300 hover:bg-yellow-100 ">
 
                         <option value="{{ null }}">none</option>
-                        @foreach ($filtarge as $filtarg)
+
+                        @foreach ($trips as $filtarg)
                             <option value="{{ $filtarg->trip }}">{{ $filtarg->trip }}
                             </option>
                         @endforeach
@@ -115,7 +116,7 @@
                     <select id="filterSelect" name="filterCars"
                         class="border-0 cursor-pointer rounded-full px-4 outline-none drop-shadow-md bg-black  text-white hover:text-black w-60 md:w-40 duration-300 hover:bg-yellow-100 ">
                         <option value="{{ null }}">none</option>
-                        @foreach ($filtarge as $filtarg)
+                        @foreach ($carTypes as $filtarg)
                             <option value="{{ $filtarg->VoitureType }}">{{ $filtarg->VoitureType }}
                             </option>
                         @endforeach
@@ -182,7 +183,7 @@
 
                     </div>
                     <div
-                        class="lg:w-[39%] w-full   flex lg:flex-col justify-between gap-2 md:gap-0 items-center md:items-end md:gap-4 lg:gap-0 my-4 lg:items-right">
+                        class="lg:w-[39%] w-full   flex lg:flex-col justify-between gap-2  items-center md:items-end md:gap-4 lg:gap-0 my-4 lg:items-right">
                         <p class="md:ml-4 lg:ml-0 font-bold text-[10px] md:text-[17px]">Today Trip :
                             {{ $chauffeur->trip }}
                         </p>
@@ -208,17 +209,16 @@
                 <div class="w-full md:w-auto  mb-6 md:mb-0">
                     <a href="../" class=" w-full flex justify-center md:justify-start"><img
                             class="mr-2 md:ml-10 w-[150px] h-[70px] md:w-[100px] "
-                             src="{{ asset('storage/image/' . 'taxista.png') }}" alt="Taxista Logo" /></a>
+                            src="{{ asset('storage/image/' . 'taxista.png') }}" alt="Taxista Logo" /></a>
                 </div>
                 <div class="w-full md:w-auto text-center">
                     <ul class="flex items-center justify-center flex-wrap gap-y-2 md:justify-end space-x-6">
                         <li><a href="/passager" class="text-gray-700 hover:text-gray-900 text-base">Home</a></li>
-                        <li><a href="/profilPassager"
-                                class="text-gray-700 hover:text-gray-900 text-base">profil</a></li>
+                        <li><a href="/profilPassager" class="text-gray-700 hover:text-gray-900 text-base">profil</a>
+                        </li>
 
 
-                        <li><a href="/logout"
-                                class="text-gray-700 hover:text-gray-900 text-base">Log out</a></li>
+                        <li><a href="/logout" class="text-gray-700 hover:text-gray-900 text-base">Log out</a></li>
 
 
                     </ul>

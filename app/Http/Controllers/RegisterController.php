@@ -45,7 +45,9 @@ class RegisterController extends Controller
             'Cpassword' => ['required', 'min:3', 'max:16'],
             'profile_image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'role' => [],
-        ],      [
+        ],
+            
+        [
 
             'name.required' => 'Name is required.',
             'name.min' => 'The name must have more than 3 characters.',

@@ -80,7 +80,7 @@
             
                     <div>
                         <label for="trip"> Your Trip</label>
-                        <input name="trip" type="text" value="{{ optional($DriverReservationtrip)->trip ?? '' }}" readonly
+                        <input name="trip" type="text" value="{{ old('driver',optional($DriverReservationtrip)->trip ?? '') }}" readonly
                             class="bg-gray-100 w-full text-sm px-4 py-4 focus:bg-transparent outline-orange-300 transition-all"
                         />
                     </div>
@@ -93,13 +93,13 @@
                     </div>
             
                     <div>
-                        <label for="driver"> Your Driver</label>
-                        <input name="driver" type="text" value="{{ optional($DriverReservationtrip)->user->name ?? '' }}" readonly
+                        <label for="driver">Your Driver</label>
+                        <input name="driver" type="text" value="{{ old('driver', optional($DriverReservationtrip)->user->name ?? '') }}" readonly
                             class="bg-gray-100 w-full text-sm px-4 py-4 focus:bg-transparent outline-orange-300 transition-all"
                         />
                     </div>
             
-                    <input type="hidden" name="driverId" value="{{ optional($DriverReservationtrip)->id ?? '' }}">
+                    <input type="hidden" name="driverId" value="{{ old('driverId' , optional($DriverReservationtrip)->id ?? '') }}">
             
                 </div>
                 <div class="mt-8">

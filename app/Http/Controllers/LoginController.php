@@ -33,8 +33,9 @@ class LoginController extends Controller
         }
 
     } else {
-        return redirect('/');
-           
+        return redirect('/')
+        ->withErrors(['login' => 'Invalid credentials'])
+        ->withInput();           
     }
 }
 public function logout()

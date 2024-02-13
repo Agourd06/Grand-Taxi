@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('VoitureType');
             $table->string('trip')->nullable();
             $table->string('TypeDePayment');
+            $table->enum('archive', ['1', '0'])->default('0');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

@@ -24,7 +24,6 @@
                         <div>{{ $errors->first() }}</div>
                     @endif
                 </div>
-               
 
                 <div>
                     <label class="text-[15px] mb-3 block">Username</label>
