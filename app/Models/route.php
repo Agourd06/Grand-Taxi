@@ -9,12 +9,13 @@ class route extends Model
 {
     use HasFactory;
 
-    // protected $fillable = [
-    //     'trip',
-    //     'date',
-    //     'Chauffeur_id',
-    //     'passager_id'
-    // ];
+    protected $fillable = [
+        'trip',
+        'date',
+        'Chauffeur_id',
+        'passager_id',
+        'reservation_id'
+    ];
     public function chauffeur()
     {
         return $this->belongsTo(chauffeur::class, 'chauffeur_id');

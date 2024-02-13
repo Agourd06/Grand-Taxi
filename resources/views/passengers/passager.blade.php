@@ -11,59 +11,8 @@
 </head>
 
 <body>
-    <header class='shadow-md bg-white font-sans'>
-        <section
-            class='flex items-center lg:justify-center   px-10 border-gray-200 border-b lg:min-h-[80px] max-lg:min-h-[60px]'>
-            <a href="javascript:void(0)" class="max-md:w-full  "><img src="{{ asset('storage/image/' . 'taxista.png') }}"
-                    alt="logo" class='md:w-[150px]  w-36' />
-            </a>
-            <div class="md:absolute md:right-10 md:flex md:items-center max-md:ml-auto">
+    @include('layout/passagerNav')
 
-
-
-
-                <div class=" inline-block w- border-gray-300 border-l-2 pl-6 cursor-pointer " id="Profil">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"
-                        class="hover:fill-[#EACE00]">
-                        <circle cx="10" cy="7" r="6" data-original="#000000" />
-                        <path
-                            d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
-                            data-original="#000000" />
-                    </svg>
-                    <div class="absolute z-50 w-[120px] hidden h-[85px] top-full rounded-md right-2 drop-shadow-2xl"
-                        id="ProfilPop">
-                        <a href='/profilPassager'
-                            class='hover:bg-[#EACE00] rounded-t-md duration-300 hover:text-white w-full h-[50%] bg-white text-gray-600 font-bold text-[15px] flex items-center justify-center'>Profile</a>
-                        <a href='/logout'
-                            class='hover:bg-[#EACE00] rounded-b-md duration-300 hover:text-white w-full h-[50%] bg-gray-300 text-gray-600 font-bold text-[15px] flex items-center justify-center'>log
-                            out</a>
-                    </div>
-                </div>
-
-
-            </div>
-        </section>
-        <div class='flex flex-wrap py-3.5 px-10 overflow-x-auto'>
-            <div class='flex ml-auto lg:order-1 lg:hidden'>
-                <button id="toggle" class='ml-7'>
-                    <svg class="w-7 h-7" fill="#EACE00" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-            </div>
-
-            <ul id="collapseMenu"
-                class='lg:!flex justify-center lg:space-x-10 max-lg:space-y-3 max-lg:hidden w-full max-lg:mt-2'>
-                <li class='max-lg:border-b max-lg:py-2'><a href='javascript:void(0)'
-                        class='hover:text-[#EACE00] text-black font-bold text-[15px] block'>Today Trip</a></li>
-                <li class='max-lg:border-b max-lg:py-2'><a href='/PaHistory'
-                        class='hover:text-[#EACE00] text-black font-bold text-[15px] block'>History</a></li>
-
-            </ul>
-        </div>
-    </header>
 
 
     <div class="relative w-full">
@@ -101,15 +50,22 @@
                         @endforeach
                     </select>
 
-                    {{-- <button type="submit">Filter</button> --}}
                 </div>
 
-                {{-- </form> --}}
-                {{-- filter by CarType --}}
 
-                {{-- <form id="filterForm" action="/filter" method="POST" class="mb-12"> --}}
-                @csrf
+                <div class="flex gap-8 mb-6">
+                    <select id="filterSelect" name="filterNote"
+                        class="border-0 cursor-pointer rounded-full outline-none  drop-shadow-md bg-black text-white hover:text-black w-60 md:w-40 duration-300 hover:bg-yellow-100 ">
 
+                        <option value="{{ null }}">none</option>
+
+                        @foreach ($trips as $filtarg)
+                            <option value="{{ $filtarg->note }}">{{ $filtarg->note }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                </div>
                 <label for="filterSelect">Vehicle types :</label>
                 <div class="flex gap-8 mb-6">
 
@@ -132,7 +88,7 @@
         <!--------------------------------------------------------------Drivers------------------------------------------------- -->
 
 
-        <div id="wikisContainer" class="min-h-full w-[70%] mx-auto rounded-xl ">
+        <div id="DriversContainer" class="min-h-full w-[70%] mx-auto rounded-xl ">
             <div class="w-full text-[30px] text-center text-bold mb-4"> <span
                     class="underline underline-offset-3 decoration-8 decoration-[#EACE00] dark:decoration-blue-600">Our
                     Drivers</span>
@@ -203,43 +159,30 @@
 
         </div>
     </section>
-    <footer class="bg-gray-100 font-[sans-serif] mt-8">
-        <div class="py-8 px-4 sm:px-12">
-            <div class="flex flex-wrap items-center justify-between">
-                <div class="w-full md:w-auto  mb-6 md:mb-0">
-                    <a href="../" class=" w-full flex justify-center md:justify-start"><img
-                            class="mr-2 md:ml-10 w-[150px] h-[70px] md:w-[100px] "
-                            src="{{ asset('storage/image/' . 'taxista.png') }}" alt="Taxista Logo" /></a>
-                </div>
-                <div class="w-full md:w-auto text-center">
-                    <ul class="flex items-center justify-center flex-wrap gap-y-2 md:justify-end space-x-6">
-                        <li><a href="/passager" class="text-gray-700 hover:text-gray-900 text-base">Home</a></li>
-                        <li><a href="/profilPassager" class="text-gray-700 hover:text-gray-900 text-base">profil</a>
-                        </li>
+    @include('layout/footer')
 
-
-                        <li><a href="/logout" class="text-gray-700 hover:text-gray-900 text-base">Log out</a></li>
-
-
-                    </ul>
-                </div>
-            </div>
-            <hr class="my-6 border-gray-300" />
-            <p class="text-center text-gray-700 text-base">
-                Copyright © {{ date('Y') }} <a href="/passager" class="hover:underline mx-1">Taxista</a>
-                All Rights Reserved.
-            </p>
-
-        </div>
-    </footer>
     <script>
-        function toggleModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.classList.toggle('hidden');
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+
+            function toggleModal(modalId) {
+                const modal = document.getElementById(modalId);
+                modal.classList.toggle('hidden');
+            }
 
 
-        document.getElementById('Profil').addEventListener('click', () => toggleModal('ProfilPop'));
+            document.getElementById('Profil').addEventListener('click', () => toggleModal('ProfilPop'));
+
+            var scrollToId = '{{ $scrollToId }}';
+            var element = document.getElementById(scrollToId);
+
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                    inline: 'nearest'
+                });
+            }
+        });
     </script>
 
 </body>

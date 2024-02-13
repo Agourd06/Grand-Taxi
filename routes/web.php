@@ -37,11 +37,12 @@ Route::middleware(['auth', 'role:chauffeur'])->group(function () {
 
 Route::middleware(['auth', 'role:passager'])->group(function () {
 
-    // Route::get('/PaHistory', function () {
-    //     return view('passengers/HistoriquePassager');
-    // });
     
+    Route::get('/favoritTrip', [PassagerController::class, 'favoritRoads']);
     Route::get('/profilPassager', [PassagerController::class, 'showUserProfile']);
+    Route::get('/PaReservation', [PassagerController::class, 'PaReservation']);
+    Route::post('/DeleteReservation', [PassagerController::class, 'DeleteReservation']);
+    
     Route::get('/PaHistory', [PassagerController::class, 'showPaHistory']);
     Route::post('/favorit', [PassagerController::class, 'favorit']);
     Route::post('/noter', [PassagerController::class, 'noter']);

@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Log;
 use App\Models\User;
 use App\Models\route;
+use App\Models\passager;
 use App\Models\Chauffeur;
 use App\Models\reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class PassagerController extends Controller
@@ -18,23 +20,18 @@ class PassagerController extends Controller
         try {
             $query = Chauffeur::with('user')->where('Desponability', 'Available');
             if ($request->input('filtertrip')) {
-                // $chauffeurs = Chauffeur::with('user')->where('Desponability', 'Available')->where('trip', $request->input('filtertrip'))->get();
 
                 $query = $query->where('trip', $request->input('filtertrip'));
             }
             if ($request->input('filterCars')) {
                 $query = $query->where('VoitureType', $request->input('filterCars'));
-
-                // $chauffeurs = Chauffeur::with('user')->where('Desponability', 'Available')->where('VoitureType', $request->input('filterCars'))->get();
             }
-            //  else {
-            //     $chauffeurs = Chauffeur::with('user')->where('Desponability', 'Available')->get();
-            // }
+
             $trips = Chauffeur::with('user')->where('Desponability', 'Available')->groupBy('trip')->get();
             $carTypes = Chauffeur::with('user')->where('Desponability', 'Available')->groupBy('VoitureType')->get();
             $chauffeurs = $query->get();
-            
-         
+
+
 
 
 
@@ -42,6 +39,7 @@ class PassagerController extends Controller
                 'chauffeurs' => $chauffeurs,
                 'trips' => $trips,
                 'carTypes' => $carTypes,
+                'scrollToId' => 'DriversContainer',
             ]);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->view('errors.404', [], 404);
@@ -77,7 +75,9 @@ class PassagerController extends Controller
                 'date.*' => 'Can You Give your trip a date'
             ]
         );
-        $passagerId = Auth::id();
+        $userId = Auth::id();
+        $passagerId = Passager::where('user_id', $userId)->value('id');
+
         // Create new reservation 
         $resrvation = new reservation;
         $resrvation->trip = $data['trip'];
@@ -93,6 +93,7 @@ class PassagerController extends Controller
         $route->date = $data['date'];
         $route->Chauffeur_id = $data['driverId'];
         $route->passager_id = $passagerId;
+        $route->reservation_id = $resrvation->id;
 
         $route->save();
 
@@ -116,50 +117,101 @@ class PassagerController extends Controller
     public function showPaHistory()
     {
         try {
-            $passagerId = Auth::id();
-            
+            $userId = Auth::id();
+            $passagerId = Passager::where('user_id', $userId)->value('id');
+
             $routes = Route::with('passager.user')
-            ->where('passager_id', $passagerId)
-            ->get();
+                ->where('passager_id', $passagerId)
+                ->get();
+
+
+
+
 
             return view('passengers.HistoriquePassager', ['routes' => $routes]);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->view('errors.404', [], 404);
         }
     }
-    public function favorit(Request $request){
+
+    public function favorit(Request $request)
+    {
         $request->validate([
             'favori' => 'required',
             'routeId' => 'required',
 
         ]);
 
-      
-        
+
+
 
         Route::where('id', $request->routeId)
-        ->update([
-            'favori' => $request->favori,
-    
-        ]);
-        return redirect( '/PaHistory');
+            ->update([
+                'favori' => $request->favori,
 
+            ]);
+        return redirect('/PaHistory');
     }
-    public function noter(Request $request){
+
+    public function favoritRoads()
+    {
+
+        $userId = Auth::id();
+        $passagerId = Passager::where('user_id', $userId)->value('id');
+        $favoritRoads = route::where('favori', '1')->where('passager_id', $passagerId)->get();
+
+
+
+
+        return view('/passengers.favorite', ['favoritRoads' => $favoritRoads]);
+    }
+    public function noter(Request $request)
+    {
         $request->validate([
             'note' => 'required',
+            'routeId' => 'required',
 
         ]);
 
-      
-        
+
+
 
         Route::where('id', $request->routeId)
-        ->update([
-            'note' => $request->favori,
-    
-        ]);
-        return redirect( '/PaHistory');
+            ->update([
+                'note' => $request->note,
 
+            ]);
+        return redirect('/PaHistory');
+    }
+    public function DeleteReservation(Request $request)
+    {
+        $request->validate([
+            'reservationId' => 'required',
+        ]);
+
+        DB::table('Reservations')->where('id', $request->reservationId)->delete();
+        return redirect('/PaReservation');
+    }
+
+
+    public function PaReservation()
+    {
+        try {
+            $userId = Auth::id();
+            $passagerId = Passager::where('user_id', $userId)->value('id');
+
+            $reservations = reservation::with('passager.user')
+                ->where('passager_id', $passagerId)
+                ->get();
+
+
+            $time = now();
+            $timenow = $time->timestamp;
+
+
+            return view('passengers.Reservations', ['reservations' => $reservations, 'timenow' => $timenow]);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->view('errors.404', [], 404);
+        }
     }
 }

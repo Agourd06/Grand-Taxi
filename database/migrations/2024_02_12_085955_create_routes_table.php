@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('Note', ['none', '1', '2', '3', '4', '5'])->default('none');
             $table->foreignId('Chauffeur_id')->constrained('chauffeurs')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('passager_id')->constrained('passagers')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('reservation_id')->constrained('reservations')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
