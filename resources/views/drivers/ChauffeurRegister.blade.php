@@ -25,7 +25,7 @@
                     </a>
                     <h4 class="text-base font-semibold mt-3">Sign up into your account</h4>
                 </div>
-                <form action="/passenger" method="post" enctype="multipart/form-data">
+                <form action="/register" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="text-red-500 text-[20px] w-full text-center">

@@ -52,18 +52,20 @@
 
                 </div>
 
+                <label for="filterSelect">Top Rating Drivers :</label>
 
                 <div class="flex gap-8 mb-6">
-                    <select id="filterSelect" name="filterNote"
-                        class="border-0 cursor-pointer rounded-full outline-none  drop-shadow-md bg-black text-white hover:text-black w-60 md:w-40 duration-300 hover:bg-yellow-100 ">
-
+                    <select id="filterSelect" name="filterNote" class="border-0 cursor-pointer rounded-full outline-none  drop-shadow-md bg-black text-white hover:text-black w-60 md:w-40 duration-300 hover:bg-yellow-100 ">
                         <option value="{{ null }}">none</option>
-
-                        @foreach ($trips as $filtarg)
-                            <option value="{{ $filtarg->note }}">{{ $filtarg->note }}
-                            </option>
-                        @endforeach
+                     
+                                <option value="5">5 Stars</option>
+                                <option value="4">4 Stars</option>
+                                <option value="2">2 Stars</option>
+                                <option value="3">3 Stars</option>
+                                <option value="1">1 Stars</option>
+                     
                     </select>
+                    
 
                 </div>
                 <label for="filterSelect">Vehicle types :</label>

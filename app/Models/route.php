@@ -12,6 +12,7 @@ class route extends Model
     protected $fillable = [
         'trip',
         'date',
+        'note',
         'Chauffeur_id',
         'passager_id',
         'reservation_id'

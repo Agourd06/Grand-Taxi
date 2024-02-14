@@ -17,7 +17,7 @@
             <img src="https://scene7.toyota.eu/is/image/toyotaeurope/lexus-lm-hero-1920x822:Large-Landscape?ts=1681462122323&resMode=sharp2&op_usm=1.75,0.3,2,0" alt="Banner Image" class="w-full h-full object-cover" />
         </div>
         <div class="relative -mt-40 m-4">
-            <form class="bg-white max-w-xl w-full mx-auto shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] p-6 rounded-md" action="/passenger" method="post" enctype="multipart/form-data">
+            <form class="bg-white max-w-xl w-full mx-auto shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] p-6 rounded-md" action="/register" method="post" enctype="multipart/form-data">
             @csrf
            
                 <div class="mb-8">

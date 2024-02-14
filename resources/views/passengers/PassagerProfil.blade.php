@@ -135,35 +135,7 @@
             </div>
 
 
-        </div>
-        <div class="min-h-screen bg-gray-300 py-6 flex flex-col justify-center sm:py-12">
-            <div class="py-3 sm:max-w-xl sm:mx-auto">
-                <div class="bg-white min-w-1xl flex flex-col rounded-xl shadow-lg">
-                    <div class="px-12 py-5">
-                        <h2 class="text-gray-800 text-3xl font-semibold">Your opinion matters to us!</h2>
-                    </div>
-                    <div class="bg-gray-200 w-full flex flex-col items-center">
-                        <div class="flex flex-col items-center py-6 space-y-3">
-                            <span class="text-lg text-gray-800">How was quality of the call?</span>
-                            <div class="flex space-x-3">
-                          <button class="w-[50px] text-[20px] text-bold hover:bg-sky-400 h-[50px] rounded-md bg-sky-200 flex justify-center items-center ">1</buttonv>
-                          <button class="w-[50px] text-[20px] text-bold hover:bg-sky-400 h-[50px] rounded-md bg-sky-200 flex justify-center items-center">2</button>
-                          <button class="w-[50px] text-[20px] text-bold hover:bg-sky-400 h-[50px] rounded-md bg-sky-200 flex justify-center items-center">3</button>
-                          <button class="w-[50px] text-[20px] text-bold hover:bg-sky-400 h-[50px] rounded-md bg-sky-200 flex justify-center items-center">4</button>
-                          <button class="w-[50px] text-[20px] text-bold hover:bg-sky-400 h-[50px] rounded-md bg-sky-200 flex justify-center items-center">5</button>
-                            </div>
-                        </div>
-                        <button class="py-3 my-8 text-lg bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white">Rate now</button>
-                  
-                    </div>
-                    <div class="h-20 flex items-center justify-center">
-                        <a href="#" class="text-gray-600">Maybe later</a>
-                    </div>
-                </div>
 
-             
-            </div>
-        </div>
     </div>
     @include('layout/footer')
 

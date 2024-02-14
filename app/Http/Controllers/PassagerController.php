@@ -26,10 +26,20 @@ class PassagerController extends Controller
             if ($request->input('filterCars')) {
                 $query = $query->where('VoitureType', $request->input('filterCars'));
             }
+            if ($request->input('filterNote')) {
+                $query = $query->whereHas('route', function ($subquery) use ($request) {
+                    $subquery->where('note', $request->input('filterNote'));
+                });
+            }
+
+            $chauffeurs = $query->get();
 
             $trips = Chauffeur::with('user')->where('Desponability', 'Available')->groupBy('trip')->get();
             $carTypes = Chauffeur::with('user')->where('Desponability', 'Available')->groupBy('VoitureType')->get();
-            $chauffeurs = $query->get();
+
+
+
+
 
 
 
