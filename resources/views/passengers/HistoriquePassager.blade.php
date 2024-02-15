@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body class="min-h-screen">
 
     @include('layout/passagerNav')
     @include('layout/passagerBurgerMenu')
@@ -182,7 +182,7 @@
                             <form action="/DeletHistorique" method="POST"
                                 class="bg-red-600 w-12 rounded-r-xl flex items-center justify-center hover:bg-red-400 cursor-pointer">
                                 @csrf
-                                <input type="hidden" value="{{$route->id}}" name="RouteId">
+                                <input type="hidden" value="{{ $route->id }}" name="RouteId">
                                 <button>
                                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960"
                                         width="24">
@@ -194,8 +194,10 @@
                         </div>
                     @endforeach
                 @else
-                    <p class="w-full text-[15px]"> Your History is empty
-                    </p>
+                    <div class=" flex justify-center">
+                        <p class=" text-[14px] md:text-[20px]"> Your History is empty
+                        </p>
+                    </div>
                 @endif
             </div>
         </div>

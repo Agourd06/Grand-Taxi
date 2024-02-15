@@ -25,8 +25,8 @@
 
                     @foreach ($routes as $route)
                         <div
-                            class="md:flex w-[95%] mb-6  lg:max-h-[25vh] min-h-fit bg-slate-100 rounded-xl p-4 md:p-5 ">
-                            <div class="w-full">
+                            class="md:flex w-[95%] mb-6  lg:max-h-[25vh] min-h-fit bg-slate-100 rounded-xl ">
+                            <div class="w-full p-4 md:p-5 ">
                                 <div class="w-full  text-center md:text-left space-y-4">
 
 
@@ -57,7 +57,18 @@
 
                             </div>
 
-
+                            <form action="/DeletHistoriqueDriver" method="POST"
+                            class="bg-red-600 w-10 rounded-r-xl flex items-center justify-center hover:bg-red-400 cursor-pointer">
+                            @csrf
+                            <input type="hidden" value="{{ $route->id }}" name="RouteId">
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960"
+                                    width="24">
+                                    <path class="fill-slate-50"
+                                        d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                                </svg>
+                            </button>
+                        </form>
                         </div>
                     @endforeach
                 @else

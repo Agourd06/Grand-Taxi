@@ -131,6 +131,7 @@ class PassagerController extends Controller
 
             $routes = Route::with('passager.user')
                 ->where('passager_id', $passagerId)
+                ->where('passagerDelete', '0')
                 ->get();
 
 
@@ -179,19 +180,26 @@ class PassagerController extends Controller
         $request->validate([
             'note' => 'required',
             'routeId' => 'required',
-
         ]);
-
-
-
 
         Route::where('id', $request->routeId)
             ->update([
                 'note' => $request->note,
-
             ]);
+
+        $chauffeurId = Route::where('id', $request->routeId)->value('chauffeur_id');
+
+        $averageValue = Route::where('chauffeur_id', $chauffeurId)->avg('Note');
+
+        $chauffeur = Chauffeur::find($chauffeurId);
+        $averageValues = number_format($averageValue, 2, '.', '');
+
+        $chauffeur->average = $averageValues - 1;
+        $chauffeur->save();
+
         return redirect('/PaHistory');
     }
+
     public function DeleteReservation(Request $request)
     {
         $request->validate([
@@ -207,7 +215,11 @@ class PassagerController extends Controller
             'RouteId' => '',
         ]);
 
-        DB::table('routes')->where('id', $request->RouteId)->delete();
+        Route::where('id', $request->RouteId)
+            ->update([
+                'passagerDelete' => '1',
+
+            ]);
         return redirect('/PaHistory');
     }
 

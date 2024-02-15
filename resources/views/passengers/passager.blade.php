@@ -24,7 +24,8 @@
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">
             <h2 class="text-xl md:text-4xl lg:text-6xl font-bold">Welcome to Our Premium Service
             </h2>
-            <p class="mt-2 text-center text-sm md:text-lg lg:text-2xl">Discover the ease of transportation as you navigate the city
+            <p class="mt-2 text-center text-sm md:text-lg lg:text-2xl">Discover the ease of transportation as you
+                navigate the city
                 with Taxista – where convenience meets exceptional service.</p>
         </div>
     </div>
@@ -56,17 +57,18 @@
                 <label for="filterSelect">Top Rating Drivers :</label>
 
                 <div class="flex gap-8 mb-6">
-                    <select id="filterSelect" name="filterNote" class="border-0 cursor-pointer rounded-full outline-none  drop-shadow-md bg-black text-white hover:text-black w-60 md:w-40 duration-300 hover:bg-yellow-100 ">
+                    <select id="filterSelect" name="filterNote"
+                        class="border-0 cursor-pointer rounded-full outline-none  drop-shadow-md bg-black text-white hover:text-black w-60 md:w-40 duration-300 hover:bg-yellow-100 ">
                         <option value="{{ null }}">none</option>
-                     
-                                <option value="5">5 Stars</option>
-                                <option value="4">4 Stars</option>
-                                <option value="2">2 Stars</option>
-                                <option value="3">3 Stars</option>
-                                <option value="1">1 Stars</option>
-                     
+
+                        <option value="5">5 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="2">2 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="1">1 Stars</option>
+
                     </select>
-                    
+
 
                 </div>
                 <label for="filterSelect">Vehicle types :</label>
@@ -103,7 +105,7 @@
                     <img class="lg:max-w-[20%] w-[50%]  lg:min-h-[25vh] max-h-[5%]  md:max-h-auto md:rounded-xl rounded-xl mx-auto lg:mx-0"
                         src="{{ asset('storage/image/' . $chauffeur->user->profile_image) }}" alt=""
                         width="384" height="512">
-                    <div class="pt-6 lg:w-[37%] w-full md:p-8 text-center md:text-left space-y-4">
+                    <div class="pt-6 lg:w-[37%] w-full md:p-8  text-center md:text-left space-y-4">
                         <div class="text-[#EACE00] text-2xl font-bold">
                             <h1>{{ $chauffeur->user->name }}</h1>
                         </div>
@@ -137,6 +139,31 @@
                                 <p> {{ $chauffeur->TypeDePayment }}</p>
                             </div>
 
+                            @if ((int) $chauffeur->Average > 0)
+                                <div class="flex items-center justify-center md:justify-start">
+                                    <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                        <path
+                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                    </svg>
+
+                                    <p class="ms-2 text-sm font-bold text-gray-900 dark:text-white">
+                                        {{ $chauffeur->Average }}</p>
+
+                                </div>
+                            @else
+                                <div class="flex items-center justify-center md:justify-start">
+                                    <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                        <path
+                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                    </svg>
+
+                                    <p class="ms-2 text-sm font-bold text-gray-900 dark:text-white">No Rate</p>
+
+                                </div>
+                            @endif
+
                         </div>
 
 
@@ -167,13 +194,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
-            function toggleModal(modalId) {
-                const modal = document.getElementById(modalId);
-                modal.classList.toggle('hidden');
-            }
 
-
-            document.getElementById('Profil').addEventListener('click', () => toggleModal('ProfilPop'));
 
             var scrollToId = '{{ $scrollToId }}';
             var element = document.getElementById(scrollToId);
@@ -181,10 +202,17 @@
             if (element) {
                 element.scrollIntoView({
                     behavior: 'smooth',
-                    
+
                 });
             }
         });
+
+
+        function toggleModal(modalId) {
+                const modal = document.getElementById(modalId);
+                modal.classList.toggle('hidden');
+            }
+
 
         function burgermenu() {
             const sideBar = document.getElementById('burgerbar')

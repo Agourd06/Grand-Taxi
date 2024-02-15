@@ -78,7 +78,10 @@ class ChauffeurController extends Controller
 
 
 $route = new ModelsRoute;
-$routes = $route->where('chauffeur_id', $chauffeurId)->get();
+$routes = $route
+->where('chauffeur_id', $chauffeurId)
+->where('chauffeurDelete', '0')
+->get();
 
 
 
@@ -87,4 +90,23 @@ $routes = $route->where('chauffeur_id', $chauffeurId)->get();
             return response()->view('errors.404', [], 404);
         }
     }
+    public function DeletHistorique(Request $request)
+    {
+        $request->validate([
+            'RouteId' => '',
+        ]);
+    
+        $route = Route::find($request->RouteId);
+    
+        if ($route) {
+            $route->update([
+                'PassagerDelete' => '1',
+            ]);
+        }
+    
+        return redirect('/ChHistory');
+    }
+   
+    
 }
+

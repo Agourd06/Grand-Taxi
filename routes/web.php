@@ -36,6 +36,8 @@ Route::middleware(['auth', 'role:chauffeur'])->group(function () {
     Route::post('/availibality', [ChauffeurController::class, 'availibality']);
     Route::get('/ChHistory', [ChauffeurController::class, 'ShowReHistory']);
     Route::post('/trip', [ChauffeurController::class, 'trip']);
+    Route::post('/DeletHistoriqueDriver', [ChauffeurController::class, 'DeletHistorique']);
+
 });
 
 //--------------------------- end route of drivers only ----------------------------------

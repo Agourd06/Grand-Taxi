@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('immatricule');
             $table->enum('Desponability', ['Available', 'Reserved' , 'In Use'])->default('Available');
             $table->string('VoitureType');
+            $table->string('Average');
             $table->string('trip')->nullable();
             $table->string('TypeDePayment');
             $table->enum('archive', ['1', '0'])->default('0');

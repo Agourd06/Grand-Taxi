@@ -37,7 +37,7 @@
             
                     <div>
                         <label for="date"> Trip Date</label>
-                        <input name="date" type="date"
+                        <input name="date" type="datetime-local"
                             class="bg-gray-100 w-full text-sm px-4 py-4 focus:bg-transparent outline-orange-300 transition-all"
                             placeholder="Enter email" />
                     </div>
