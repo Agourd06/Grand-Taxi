@@ -1,7 +1,7 @@
 <header class='shadow-md bg-white font-sans'>
     <section
         class='flex items-center lg:justify-center   px-10 border-gray-200 border-b lg:min-h-[80px] max-lg:min-h-[60px]'>
-        <a href="javascript:void(0)" class="max-md:w-full  "><img src="{{ asset('storage/image/' . 'taxista.png') }}"
+        <a href="/passager" class="max-md:w-full  "><img src="{{ asset('storage/image/' . 'taxista.png') }}"
                 alt="logo" class='md:w-[150px]  w-36' />
         </a>
         <div class="md:absolute md:right-10 md:flex md:items-center max-md:ml-auto">

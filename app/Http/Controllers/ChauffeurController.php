@@ -77,11 +77,11 @@ class ChauffeurController extends Controller
             $chauffeurId = chauffeur::where('user_id', $userId)->value('id');
 
 
-$route = new ModelsRoute;
-$routes = $route
-->where('chauffeur_id', $chauffeurId)
-->where('chauffeurDelete', '0')
-->get();
+            $route = new ModelsRoute;
+            $routes = $route
+                ->where('chauffeur_id', $chauffeurId)
+                ->where('chauffeurDelete', '0')
+                ->get();
 
 
 
@@ -95,18 +95,15 @@ $routes = $route
         $request->validate([
             'RouteId' => '',
         ]);
-    
+
         $route = Route::find($request->RouteId);
-    
+
         if ($route) {
             $route->update([
                 'PassagerDelete' => '1',
             ]);
         }
-    
+
         return redirect('/ChHistory');
     }
-   
-    
 }
-

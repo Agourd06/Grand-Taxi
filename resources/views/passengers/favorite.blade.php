@@ -18,7 +18,7 @@
             class="underline underline-offset-3 decoration-8 decoration-[#EACE00] dark:decoration-blue-600">Your Favorit
             Trips</span>
     </div>
-    <section class="md:w-[90%] w-[85%] mx-auto">
+    <section class="md:w-[90%] w-[85%] mx-auto mb-6">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16 max-md:max-w-lg mx-auto">
             @foreach ($favoritRoads as $route)
                 <div class="bg-slate-100 w-full h-60 shadow-black shadow-md rounded-md ">

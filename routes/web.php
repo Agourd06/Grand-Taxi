@@ -57,6 +57,7 @@ Route::middleware(['auth', 'role:passager'])->group(function () {
     Route::get('/PaReservation', [PassagerController::class, 'PaReservation']);
     Route::post('/DeletHistorique', [PassagerController::class, 'DeletHistorique']);
     Route::post('/DeleteReservation', [PassagerController::class, 'DeleteReservation']);
+    Route::post('/DeleteDoneReservation', [PassagerController::class, 'deleteDoneReservation']);
 
     Route::get('/PaHistory', [PassagerController::class, 'showPaHistory']);
     Route::post('/favorit', [PassagerController::class, 'favorit']);

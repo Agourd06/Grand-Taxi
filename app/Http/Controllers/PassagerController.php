@@ -18,7 +18,7 @@ class PassagerController extends Controller
     {
 
         try {
-            $query = Chauffeur::with('user')->where('Desponability', 'Available');
+            $query = Chauffeur::with('user')->where('Desponability', 'Available')->where('archive', '0');
             if ($request->input('filtertrip')) {
 
                 $query = $query->where('trip', $request->input('filtertrip'));
@@ -26,22 +26,19 @@ class PassagerController extends Controller
             if ($request->input('filterCars')) {
                 $query = $query->where('VoitureType', $request->input('filterCars'));
             }
-            if ($request->input('filterNote')) {
-                $query = $query->whereHas('route', function ($subquery) use ($request) {
-                    $subquery->where('note', $request->input('filterNote'));
-                });
+            if ($request->input('filterNote') !== null || in_array($request->input('filterNote'), ['1', '2', '3', '4', '5'])) {
+                $averageRating = $request->input('filterNote');
+
+                $query = $query->whereRaw('ROUND(average) = ?', [$averageRating]);
+
+                // $maxrating = $request->input('filterNote') + 0.9;
+                // $query = $query->whereBetween('average', [$request->input('filterNote'), $maxrating]);
             }
 
             $chauffeurs = $query->get();
 
             $trips = Chauffeur::with('user')->where('Desponability', 'Available')->groupBy('trip')->get();
             $carTypes = Chauffeur::with('user')->where('Desponability', 'Available')->groupBy('VoitureType')->get();
-
-
-
-
-
-
 
 
 
@@ -132,6 +129,7 @@ class PassagerController extends Controller
             $routes = Route::with('passager.user')
                 ->where('passager_id', $passagerId)
                 ->where('passagerDelete', '0')
+                ->orderby('id', 'Desc')
                 ->get();
 
 
@@ -168,7 +166,7 @@ class PassagerController extends Controller
 
         $userId = Auth::id();
         $passagerId = Passager::where('user_id', $userId)->value('id');
-        $favoritRoads = route::where('favori', '1')->where('passager_id', $passagerId)->get();
+        $favoritRoads = route::where('favori', '1')->where('passager_id', $passagerId)->orderby('id', 'DESC')->get();
 
 
 
@@ -209,6 +207,15 @@ class PassagerController extends Controller
         DB::table('Reservations')->where('id', $request->reservationId)->delete();
         return redirect('/PaReservation');
     }
+    public function deleteDoneReservation(Request $request)
+    {
+        $request->validate([
+            'reservationId' => 'required',
+        ]);
+
+        DB::table('Reservations')->where('id', $request->reservationId)->delete();
+        return redirect('/PaHistory');
+    }
     public function DeletHistorique(Request $request)
     {
         $request->validate([
@@ -232,6 +239,8 @@ class PassagerController extends Controller
 
             $reservations = reservation::with('passager.user')
                 ->where('passager_id', $passagerId)
+                ->where('archive', '0')
+                ->orderby('id', 'DESC')
                 ->get();
 
 

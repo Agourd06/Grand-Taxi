@@ -36,10 +36,10 @@
         <div class="md:w-[19%] md:ml-auto md:mt-12 mb-8 md:mb-0 flex flex-col items-center">
             {{-- filter by Traji --}}
 
-            <form id="filterForm" action="/filter" method="POST" class="mb-8">
+            <form id="filterForm" action="/filter" method="POST" class="mb-8 flex justify-center flex-col">
                 @csrf
 
-                <label for="filterSelect">Trips :</label>
+                <label for="filterSelect" class="text-md font-bold mb-2">Trips :</label>
                 <div class="flex gap-8 mb-6">
                     <select id="filterSelect" name="filtertrip"
                         class="border-0 cursor-pointer rounded-full outline-none  drop-shadow-md bg-black text-white hover:text-black w-60 md:w-40 duration-300 hover:bg-yellow-100 ">
@@ -54,7 +54,7 @@
 
                 </div>
 
-                <label for="filterSelect">Top Rating Drivers :</label>
+                <label for="filterSelect" class="text-md font-bold mb-2">Top Rating Drivers :</label>
 
                 <div class="flex gap-8 mb-6">
                     <select id="filterSelect" name="filterNote"
@@ -63,15 +63,15 @@
 
                         <option value="5">5 Stars</option>
                         <option value="4">4 Stars</option>
-                        <option value="2">2 Stars</option>
                         <option value="3">3 Stars</option>
+                        <option value="2">2 Stars</option>
                         <option value="1">1 Stars</option>
 
                     </select>
 
 
                 </div>
-                <label for="filterSelect">Vehicle types :</label>
+                <label for="filterSelect" class="text-md font-bold mb-2">Vehicle types :</label>
                 <div class="flex gap-8 mb-6">
 
                     <select id="filterSelect" name="filterCars"
@@ -82,8 +82,8 @@
                             </option>
                         @endforeach
                     </select>
-                    <button type="submit">Filter</button>
                 </div>
+                <button type="submit" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-8 py-2  text-center me-2 mb-2 ">Filter</button>
 
             </form>
 
@@ -95,95 +95,102 @@
 
         <div id="DriversContainer" class="min-h-full w-[70%] mx-auto rounded-xl ">
             <div class="w-full text-[30px] text-center text-bold mb-4"> <span
-                    class="underline underline-offset-3 decoration-8 decoration-[#EACE00] dark:decoration-blue-600">Our
+                    class="underline underline-offset-3 font-semibold decoration-8 decoration-[#EACE00] dark:decoration-blue-600">Our
                     Drivers</span>
             </div>
+            @if ($chauffeurs && count($chauffeurs) > 0)
 
-            @foreach ($chauffeurs as $chauffeur)
-                <div
-                    class="md:flex w-[95%] cursor-pointer md:flex-col lg:flex-row  lg:max-h-[35vh] min-h-fit bg-slate-100 rounded-xl p-4 md:p-0  hover:scale-105 mb-8 md:mb-6">
-                    <img class="lg:max-w-[20%] w-[50%]  lg:min-h-[25vh] max-h-[5%]  md:max-h-auto md:rounded-xl rounded-xl mx-auto lg:mx-0"
-                        src="{{ asset('storage/image/' . $chauffeur->user->profile_image) }}" alt=""
-                        width="384" height="512">
-                    <div class="pt-6 lg:w-[37%] w-full md:p-8  text-center md:text-left space-y-4">
-                        <div class="text-[#EACE00] text-2xl font-bold">
-                            <h1>{{ $chauffeur->user->name }}</h1>
-                        </div>
-
-                        <div class=" w-full  ">
-                            <div class="flex gap-2 justify-center mb-4 md:justify-start">
-                                <p class=" font-bold">Car Type : </p>
-                                <p> {{ $chauffeur->VoitureType }}</p>
+                @foreach ($chauffeurs as $chauffeur)
+                    <div
+                        class="md:flex w-[95%] cursor-pointer md:flex-col lg:flex-row  lg:max-h-[35vh] min-h-fit bg-slate-100 rounded-xl p-4 md:p-0  hover:scale-105 mb-8 md:mb-6">
+                        <img class="lg:max-w-[20%] w-[50%]  lg:min-h-[25vh] max-h-[5%]  md:max-h-auto md:rounded-xl rounded-xl mx-auto lg:mx-0"
+                            src="{{ asset('storage/image/' . $chauffeur->user->profile_image) }}" alt=""
+                            width="384" height="512">
+                        <div class="pt-6 lg:w-[37%] w-full md:p-8  text-center md:text-left space-y-4">
+                            <div class="text-[#EACE00] text-2xl font-bold">
+                                <h1>{{ $chauffeur->user->name }}</h1>
                             </div>
 
-                            <div class="flex gap-2 justify-center md:h-[6vh] items-center mb-4 md:justify-start">
-                                <p class=" font-bold">Avaibility : </p>
-                                <p> {{ $chauffeur->Desponability }}</p>
+                            <div class=" w-full  ">
+                                <div class="flex gap-2 justify-center mb-4 md:justify-start">
+                                    <p class=" font-bold">Car Type : </p>
+                                    <p> {{ $chauffeur->VoitureType }}</p>
+                                </div>
+
+                                <div class="flex gap-2 justify-center md:h-[6vh] items-center mb-4 md:justify-start">
+                                    <p class=" font-bold">Avaibility : </p>
+                                    <p> {{ $chauffeur->Desponability }}</p>
 
 
-                                {{-- --------------------------- Condition For Dispo icon ------------------------- --}}
+                                    {{-- --------------------------- Condition For Dispo icon ------------------------- --}}
 
 
-                                @if ($chauffeur->Desponability === 'Available')
-                                    <img srcset="https://img.icons8.com/?size=48&amp;id=FkQHNSmqWQWH&amp;format=png 1x, https://img.icons8.com/?size=96&amp;id=FkQHNSmqWQWH&amp;format=png 2x,"
-                                        src="https://img.icons8.com/?size=96&amp;id=FkQHNSmqWQWH&amp;format=png"
-                                        alt="emoji-cercle-vert" loading="lazy" width="20" height="20"
-                                        style="width: 15px; height: 15px; " lazy="loaded">
+                                    @if ($chauffeur->Desponability === 'Available')
+                                        <img srcset="https://img.icons8.com/?size=48&amp;id=FkQHNSmqWQWH&amp;format=png 1x, https://img.icons8.com/?size=96&amp;id=FkQHNSmqWQWH&amp;format=png 2x,"
+                                            src="https://img.icons8.com/?size=96&amp;id=FkQHNSmqWQWH&amp;format=png"
+                                            alt="emoji-cercle-vert" loading="lazy" width="20" height="20"
+                                            style="width: 15px; height: 15px; " lazy="loaded">
+                                    @endif
+
+                                    {{-- --------------------------- Condition For Dispo icon ------------------------- --}}
+
+                                </div>
+                                <div class="flex gap-2 justify-center  mb-4 md:justify-start">
+                                    <p class=" font-bold">Payment by : </p>
+                                    <p> {{ $chauffeur->TypeDePayment }}</p>
+                                </div>
+
+                                @if ((int) $chauffeur->Average > 0)
+                                    <div class="flex items-center justify-center md:justify-start">
+                                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                            <path
+                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                        </svg>
+
+                                        <p class="ms-2 text-sm font-bold text-gray-900 dark:text-white">
+                                            {{ $chauffeur->Average }}</p>
+
+                                    </div>
+                                @else
+                                    <div class="flex items-center justify-center md:justify-start">
+                                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                            <path
+                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                        </svg>
+
+                                        <p class="ms-2 text-sm font-bold text-gray-900 dark:text-white">No Rate</p>
+
+                                    </div>
                                 @endif
 
-                                {{-- --------------------------- Condition For Dispo icon ------------------------- --}}
-
-                            </div>
-                            <div class="flex gap-2 justify-center  mb-4 md:justify-start">
-                                <p class=" font-bold">Payment by : </p>
-                                <p> {{ $chauffeur->TypeDePayment }}</p>
                             </div>
 
-                            @if ((int) $chauffeur->Average > 0)
-                                <div class="flex items-center justify-center md:justify-start">
-                                    <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-
-                                    <p class="ms-2 text-sm font-bold text-gray-900 dark:text-white">
-                                        {{ $chauffeur->Average }}</p>
-
-                                </div>
-                            @else
-                                <div class="flex items-center justify-center md:justify-start">
-                                    <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-
-                                    <p class="ms-2 text-sm font-bold text-gray-900 dark:text-white">No Rate</p>
-
-                                </div>
-                            @endif
 
                         </div>
-
+                        <div
+                            class="lg:w-[39%] w-full   flex lg:flex-col justify-between gap-2  items-center md:items-end md:gap-4 lg:gap-0 my-4 lg:items-right">
+                            <p class="md:ml-4 lg:ml-0 font-bold text-[10px] md:text-[17px]">Today Trip :
+                                {{ $chauffeur->trip }}
+                            </p>
+                            <form action="/reserveration" method="post">
+                                @csrf
+                                <input type="hidden" value="{{ $chauffeur->id }}" name="driverId">
+                                <button type="submit" name="wikiId"
+                                    class=" md:w-[150px] w-[70px] text-[10px] md:text-[15px] h-[40px] md:mr-4 lg:mr-0 bg-black rounded duration-300 hover:bg-[#EACE00]  text-white"
+                                    value="">Reserve Road</button>
+                            </form>
+                        </div>
 
                     </div>
-                    <div
-                        class="lg:w-[39%] w-full   flex lg:flex-col justify-between gap-2  items-center md:items-end md:gap-4 lg:gap-0 my-4 lg:items-right">
-                        <p class="md:ml-4 lg:ml-0 font-bold text-[10px] md:text-[17px]">Today Trip :
-                            {{ $chauffeur->trip }}
-                        </p>
-                        <form action="/reserveration" method="post">
-                            @csrf
-                            <input type="hidden" value="{{ $chauffeur->id }}" name="driverId">
-                            <button type="submit" name="wikiId"
-                                class=" md:w-[150px] w-[70px] text-[10px] md:text-[15px] h-[40px] md:mr-4 lg:mr-0 bg-black rounded duration-300 hover:bg-[#EACE00]  text-white"
-                                value="">Reserve Road</button>
-                        </form>
-                    </div>
-
+                @endforeach
+            @else
+                <div class=" flex justify-center h-32 items-center">
+                    <p class=" text-[16px] md:text-[20px]"> No matching drivers found.
+                    </p>
                 </div>
-            @endforeach
+            @endif
 
 
 
@@ -209,9 +216,9 @@
 
 
         function toggleModal(modalId) {
-                const modal = document.getElementById(modalId);
-                modal.classList.toggle('hidden');
-            }
+            const modal = document.getElementById(modalId);
+            modal.classList.toggle('hidden');
+        }
 
 
         function burgermenu() {

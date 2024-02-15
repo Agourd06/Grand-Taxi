@@ -19,7 +19,9 @@
 
             <div class="flex items-center">
                 <div class="flex items-center gap-2 ml-4">
-                    <img src="{{ asset('storage/image/' . 'taxista.png') }}" alt="Logo" class="w-24 h-18 mr-2">
+                    <a href="/admin" class="w-24 h-18 mr-2 "><img src="{{ asset('storage/image/' . 'taxista.png') }}"
+                        alt="logo"  />
+                </a>  
                     <p
                         class="text-transparent bg-clip-text  text-[20px] font-bold bg-gradient-to-r from-[#EACE00] to-[#3a3300]">
                         Administration</p>
@@ -29,7 +31,7 @@
             <!-- --------------------------------burger icon ----------------------------- -->
             <div class="space-x-5">
                 <button type="button" id="burger" onclick="burgermenu()"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                     <span class="sr-only">Open main menu</span>
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 17 14">
@@ -44,7 +46,7 @@
         <!-- --------------------------------burger menu ----------------------------- -->
 
         <div id="burgerbar"
-            class=" hidden absolute top-0 right-0 w-72 md:w-1/6 bg-slate-200 opacity-75 flex flex-col font-bold text-xl gap-6 min-h-screen pl-2">
+            class=" hidden absolute top-0 right-0 w-72 md:w-1/2 bg-slate-200 opacity-75 flex flex-col font-bold text-xl gap-6 min-h-screen pl-2">
             <a class="hover:bg-gradient-to-r hover:from-[#EACE00] hover:to-[#3a3300]" id="close"
                 onclick="burgermenu()" href="#"><svg xmlns="http://www.w3.org/2000/svg" height="36"
                     viewBox="0 -960 960 960" width="36">
@@ -66,7 +68,7 @@
 
             <a class="block text-black font-bold py-2.5 px-4 my-2 rounded duration-300 hover:bg-gradient-to-r hover:from-[#EACE00] hover:to-[#3a3300] hover:text-white "
                 href="/logout">
-                <i class="fas fa-sign-out-alt mr-2"></i>Log Out
+                <i class=" mr-2"></i>Log Out
             </a>
 
         </div>
@@ -75,7 +77,7 @@
         <div class="flex-1 flex flex-wrap">
             <!-- --------------------------------SideBar ----------------------------- -->
 
-            <div class="p-2 bg-white w-full md:w-60 flex flex-col md:flex hidden" id="sideNav">
+            <div class="p-2 bg-white w-full md:w-60 flex flex-col lg:flex hidden" id="sideNav">
                 <nav><a class="block text-black font-bold py-2.5 px-4 my-4 rounded  duration-300 hover:bg-gradient-to-r hover:from-[#EACE00] hover:to-[#3a3300] hover:text-white"
                         href="/admin">
                         <i class="fas fa-home mr-2"></i>Dashboard
@@ -113,8 +115,9 @@
                             <thead class="bg-gradient-to-r from-[#EACE00] to-[#3a3300] whitespace-nowrap">
                                 <tr>
 
-                                    <th class="px-6 py-3 text-left max-w-4  md:text-[15px] text-[12px] font-semibold text-white">
-                                         Profile
+                                    <th
+                                        class="px-6 py-3 text-left max-w-4  md:text-[15px] text-[12px] font-semibold text-white">
+                                        Profile
                                     </th>
                                     <th class="px-6 py-3 text-left md:text-[15px] text-[12px] font-semibold text-white">
                                         FullName
@@ -124,7 +127,7 @@
                                     </th>
                                     <th class="px-6 py-3 text-left md:text-[15px] text-[12px] font-semibold text-white">
                                         Registration
-                                                                        </th>
+                                    </th>
                                     <th class="px-6 py-3 text-left md:text-[15px] text-[12px] font-semibold text-white">
                                         Action
                                     </th>
@@ -148,7 +151,7 @@
 
 
                                         <td class="pl-12 py-4 md:text-[15px] text-[12px] ">
-                                            {{ $chauffeur->immatricule }} 
+                                            {{ $chauffeur->immatricule }}
 
                                         </td>
 
@@ -208,7 +211,7 @@
                                 <tr>
 
                                     <th
-                                    class="px-6 py-3 text-left max-w-4  md:text-[15px] text-[12px] font-semibold text-white">
+                                        class="px-6 py-3 text-left max-w-4  md:text-[15px] text-[12px] font-semibold text-white">
                                         Profile
                                     </th>
                                     <th

@@ -14,9 +14,9 @@
     @include('layout/passagerNav')
     @include('layout/passagerBurgerMenu')
 
-    <section class="h-full w-full bg-yellow-200">
-    <div class="flex flex-col justify-center font-[sans-serif] text-[#333] p-4">
-        <div class="max-w-md w-full mx-auto shadow-[0_2px_10px_-3px_rgba(6,81,237,0.5)] p-8 relative mt-12">
+    <section style="background-size:100% 100%;" class="h-full w-full bg-yellow-200 bg-[url('https://thehill.com/wp-content/uploads/sites/2/2016/04/uberdc_getty.jpg?w=645&h=364&crop=1')] h-screen">
+    <div class="flex flex-col  justify-center font-[sans-serif] text-[#333] p-4">
+        <div class="max-w-md w-full bg-gray-100 rounded-md mx-auto shadow-[0_2px_10px_-3px_rgba(6,81,237,0.5)] p-8 relative mt-12">
             <div
                 class="bg-white w-24 h-24 border-[8px] p-1.5 absolute left-0 right-0 mx-auto -top-10 rounded-full overflow-hidden">
                 <a href="javascript:void(0)"><img src="{{ asset('storage/image/' . 'taxista.png') }}" alt="logo"
@@ -54,7 +54,7 @@
                 </div>
                 <div class="mt-8">
                     <button type="submit"
-                        class="w-full py-4 px-4 text-sm font-semibold text-white bg-black hover:bg-gray-900 focus:outline-none">
+                        class="w-full rounded-md py-4 px-4 text-sm font-semibold text-white bg-black hover:bg-gray-900 focus:outline-none">
                         Reserve Trip
                     </button>
                 </div>

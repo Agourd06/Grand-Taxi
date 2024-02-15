@@ -18,8 +18,9 @@
 
             <div class="flex items-center">
                 <div class="flex items-center gap-2 ml-4">
-                    <img src="{{ asset('storage/image/' . 'taxista.png') }}" alt="Logo" class="w-24 h-18 mr-2">
-                    <p
+                    <a href="/admin" class="w-24 h-18 mr-2 "><img src="{{ asset('storage/image/' . 'taxista.png') }}"
+                        alt="logo"  />
+                </a>                    <p
                         class="text-transparent bg-clip-text  text-[20px] font-bold bg-gradient-to-r from-[#EACE00] to-[#3a3300]">
                         Administration</p>
 
@@ -28,7 +29,7 @@
             <!-- --------------------------------burger icon ----------------------------- -->
             <div class="space-x-5">
                 <button type="button" id="burger" onclick="burgermenu()"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                     <span class="sr-only">Open main menu</span>
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 17 14">
@@ -43,7 +44,7 @@
         <!-- --------------------------------burger menu ----------------------------- -->
 
         <div id="burgerbar"
-            class=" hidden absolute top-0 right-0 w-72 md:w-1/6 bg-slate-200 opacity-75 flex flex-col font-bold text-xl gap-6 min-h-screen pl-2">
+            class=" hidden absolute top-0 right-0 w-72 md:w-1/2 bg-slate-200 opacity-75 flex flex-col font-bold text-xl gap-6 min-h-screen pl-2">
             <a class="hover:bg-gradient-to-r hover:from-[#EACE00] hover:to-[#3a3300]" id="close"
                 onclick="burgermenu()" href="#"><svg xmlns="http://www.w3.org/2000/svg" height="36"
                     viewBox="0 -960 960 960" width="36">
@@ -74,7 +75,7 @@
         <div class="flex-1 flex flex-wrap">
             <!-- --------------------------------SideBar ----------------------------- -->
 
-            <div class="p-2 bg-white w-full md:w-60 flex flex-col md:flex hidden" id="sideNav">
+            <div class="p-2 bg-white w-full md:w-60 flex flex-col lg:flex hidden" id="sideNav">
                 <nav><a class="block text-black font-bold py-2.5 px-4 my-4 rounded  duration-300 hover:bg-gradient-to-r hover:from-[#EACE00] hover:to-[#3a3300] hover:text-white"
                         href="/admin">
                         <i class="fas fa-home mr-2"></i>Dashboard
@@ -104,10 +105,10 @@
                     <h1></h1>
                 </div>
 
-                <div class="mt-8 md:flex jmd:ustify-rounded  space-x-0 space-y-2 md:space-x-4 md:space-y-0">
-                    <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
+                <div class="mt-8 md:flex md:justify-rounded  space-x-0 space-y-2 md:space-x-4 md:space-y-0">
+                    <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/3 lg:w-1/2">
 
-                        <h2 class="text-gray-500 text-lg font-semibold pb-1">Drivers</h2>
+                        <h2 class="text-gray-500 lg:text-lg md:text-md font-semibold pb-1">Drivers</h2>
                         <div class="my-1"></div>
                         <div class="bg-gradient-to-r from-[#EACE00] to-[#3a3300] h-px mb-6"></div>
                         <div class="flex">
@@ -123,14 +124,14 @@
 
                             </span>
                             <h3
-                                class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-gray-500 border-b border-grey-light">
+                                class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm md:text-[10px] lg:text-sm text-gray-500 border-b border-grey-light">
                                 Active Drivers</h3>
                         </div>
                     </div>
 
 
-                    <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
-                        <h2 class="text-gray-500 text-lg font-semibold pb-1">Passengers</h2>
+                    <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/3 lg:w-1/2">
+                        <h2 class="text-gray-500 lg:text-lg md:text-md font-semibold pb-1">Passengers</h2>
                         <div class="my-1"></div>
                         <div class="bg-gradient-to-r from-[#EACE00] to-[#3a3300] h-px mb-6"></div>
                         <div class="flex">
@@ -145,13 +146,13 @@
 
                             </span>
                             <h3
-                                class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-gray-500 border-b border-grey-light">
+                                class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm md:text-[10px] lg:text-sm text-gray-500 border-b border-grey-light">
                                 Active Passengers</h3>
 
                         </div>
                     </div>
-                    <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
-                        <h2 class="text-gray-500 text-lg font-semibold pb-1">Reservations</h2>
+                    <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/3 lg:w-1/2">
+                        <h2 class="text-gray-500 lg:text-lg md:text-md font-semibold pb-1">Reservations</h2>
                         <div class="my-1"></div>
                         <div class="bg-gradient-to-r from-[#EACE00] to-[#3a3300] h-px mb-6"></div>
                         <div class="flex">
@@ -165,7 +166,7 @@
                                 {{ $ResrvationsCount }}
                             </span>
                             <h3
-                                class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-gray-500 border-b border-grey-light">
+                                class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm md:text-[10px] lg:text-sm text-gray-500 border-b border-grey-light">
                                 current reservations</h3>
                         </div>
                     </div>
