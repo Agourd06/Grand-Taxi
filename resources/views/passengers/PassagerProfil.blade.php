@@ -13,6 +13,8 @@
 <body>
 
     @include('layout/passagerNav')
+    @include('layout/passagerBurgerMenu')
+
 
     <div id="addTripModal" class="hidden fixed z-50 inset-0 overflow-y-auto">
         <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -147,6 +149,12 @@
 
 
         document.getElementById('Profil').addEventListener('click', () => toggleModal('ProfilPop'));
+
+        function burgermenu() {
+            const sideBar = document.getElementById('burgerbar')
+            sideBar.classList.toggle('hidden');
+        }
+
     </script>
 </body>
 

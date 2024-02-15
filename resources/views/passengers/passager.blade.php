@@ -12,6 +12,7 @@
 
 <body>
     @include('layout/passagerNav')
+    @include('layout/passagerBurgerMenu')
 
 
 
@@ -23,7 +24,7 @@
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">
             <h2 class="text-xl md:text-4xl lg:text-6xl font-bold">Welcome to Our Premium Service
             </h2>
-            <p class="mt-2 text-md md:text-lg lg:text-2xl">Discover the ease of transportation as you navigate the city
+            <p class="mt-2 text-center text-sm md:text-lg lg:text-2xl">Discover the ease of transportation as you navigate the city
                 with Taxista – where convenience meets exceptional service.</p>
         </div>
     </div>
@@ -180,11 +181,15 @@
             if (element) {
                 element.scrollIntoView({
                     behavior: 'smooth',
-                    block: 'start',
-                    inline: 'nearest'
+                    
                 });
             }
         });
+
+        function burgermenu() {
+            const sideBar = document.getElementById('burgerbar')
+            sideBar.classList.toggle('hidden');
+        }
     </script>
 
 </body>

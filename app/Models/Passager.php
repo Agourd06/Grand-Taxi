@@ -21,6 +21,6 @@ class passager extends User
     }
     public function route()
     {
-        return $this->hasMany(route::class , 'Chauffeur_id');
+        return $this->hasMany(route::class , 'passager_id');
     }
 }

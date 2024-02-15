@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Chauffeur;
+use App\Models\route as ModelsRoute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Route;
 
 class ChauffeurController extends Controller
 {
@@ -39,7 +41,7 @@ class ChauffeurController extends Controller
 
         $user = Auth::user();
         $chauffeur = $user->chauffeur;
-        $chauffeur->trip = $trip['Depart'].'-'.$trip['Destination'];
+        $chauffeur->trip = $trip['Depart'] . '-' . $trip['Destination'];
         $chauffeur->save();
         return redirect('/chauffeur');
     }
@@ -49,24 +51,40 @@ class ChauffeurController extends Controller
             $userId = Auth::id();
             $user = User::findOrFail($userId);
             $chauffeur = $user->chauffeur;
-    
+
             return view('drivers.ChauffeurProfil', ['user' => $user, 'chauffeur' => $chauffeur]);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->view('errors.404', [], 404);
         }
     }
-    
+
     public function Disponibility()
     {
         try {
             $userId = Auth::id();
             $user = User::findOrFail($userId);
             $chauffeur = $user->chauffeur;
-    
+
             return view('drivers.chauffeur', ['chauffeur' => $chauffeur]);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->view('errors.404', [], 404);
         }
     }
-    
+    public function ShowReHistory()
+    {
+        try {
+            $userId = Auth::id();
+            $chauffeurId = chauffeur::where('user_id', $userId)->value('id');
+
+
+$route = new ModelsRoute;
+$routes = $route->where('chauffeur_id', $chauffeurId)->get();
+
+
+
+            return view('drivers.chauffeurHistorique', ['routes' => $routes]);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->view('errors.404', [], 404);
+        }
+    }
 }

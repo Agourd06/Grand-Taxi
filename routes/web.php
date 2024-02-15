@@ -34,6 +34,7 @@ Route::middleware(['auth', 'role:chauffeur'])->group(function () {
     Route::get('/DriverProfil', [ChauffeurController::class, 'showUserProfile'])->name('driver.profile');
     Route::get('/chauffeur', [ChauffeurController::class, 'Disponibility'])->name('driver');
     Route::post('/availibality', [ChauffeurController::class, 'availibality']);
+    Route::get('/ChHistory', [ChauffeurController::class, 'ShowReHistory']);
     Route::post('/trip', [ChauffeurController::class, 'trip']);
 });
 
@@ -52,6 +53,7 @@ Route::middleware(['auth', 'role:passager'])->group(function () {
     Route::get('/favoritTrip', [PassagerController::class, 'favoritRoads']);
     Route::get('/profilPassager', [PassagerController::class, 'showUserProfile']);
     Route::get('/PaReservation', [PassagerController::class, 'PaReservation']);
+    Route::post('/DeletHistorique', [PassagerController::class, 'DeletHistorique']);
     Route::post('/DeleteReservation', [PassagerController::class, 'DeleteReservation']);
 
     Route::get('/PaHistory', [PassagerController::class, 'showPaHistory']);

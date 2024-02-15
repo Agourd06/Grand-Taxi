@@ -103,7 +103,6 @@ class PassagerController extends Controller
         $route->date = $data['date'];
         $route->Chauffeur_id = $data['driverId'];
         $route->passager_id = $passagerId;
-        $route->reservation_id = $resrvation->id;
 
         $route->save();
 
@@ -201,6 +200,15 @@ class PassagerController extends Controller
 
         DB::table('Reservations')->where('id', $request->reservationId)->delete();
         return redirect('/PaReservation');
+    }
+    public function DeletHistorique(Request $request)
+    {
+        $request->validate([
+            'RouteId' => '',
+        ]);
+
+        DB::table('routes')->where('id', $request->RouteId)->delete();
+        return redirect('/PaHistory');
     }
 
 

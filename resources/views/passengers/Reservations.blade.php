@@ -12,6 +12,8 @@
 
 <body>
     @include('layout/passagerNav')
+    @include('layout/passagerBurgerMenu')
+
     <div id="DriversContainer" class="min-h-[50vh] w-[70%] mx-auto rounded-xl mt-8">
 
         @foreach ($reservations as $route)
@@ -51,7 +53,7 @@
 
                     $timeDifference = $reservDate - $timenow;
 
-                    $oneDayInSeconds = 24 * 60 * 60;
+                    $oneDayInSeconds = 10 * 60 * 60;
                 @endphp
                 <div
                     class="w-full  flex md:flex-col items-center justify-between gap-2 md:gap-0 md:justify-center  md:items-end">
@@ -123,6 +125,12 @@
             modal.classList.toggle('hidden');
         }
         document.getElementById('Profil').addEventListener('click', () => toggleModal('ProfilPop'));
+
+        function burgermenu() {
+            const sideBar = document.getElementById('burgerbar')
+            sideBar.classList.toggle('hidden');
+        }
+
     </script>
 </body>
 

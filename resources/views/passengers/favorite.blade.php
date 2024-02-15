@@ -12,6 +12,8 @@
 
 <body>
     @include('layout/passagerNav')
+    @include('layout/passagerBurgerMenu')
+
     <div class="w-full text-4xl text-center text-bold pt-8"> <span
             class="underline underline-offset-3 decoration-8 decoration-[#EACE00] dark:decoration-blue-600">Your Favorit
             Trips</span>
@@ -78,7 +80,18 @@
 
     </section>
     @include('layout/footer')
-
+    <script>
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.toggle('hidden');
+        }
+        document.getElementById('Profil').addEventListener('click', () => toggleModal('ProfilPop'));
+    
+        function burgermenu() {
+                const sideBar = document.getElementById('burgerbar')
+                sideBar.classList.toggle('hidden');
+            }
+    </script>
 </body>
 
 </html>

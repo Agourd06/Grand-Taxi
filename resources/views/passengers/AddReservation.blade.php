@@ -12,6 +12,7 @@
 
 <body>
     @include('layout/passagerNav')
+    @include('layout/passagerBurgerMenu')
 
     <section class="h-full w-full bg-yellow-200">
     <div class="flex flex-col justify-center font-[sans-serif] text-[#333] p-4">
@@ -69,6 +70,11 @@
         modal.classList.toggle('hidden');
     }
     document.getElementById('Profil').addEventListener('click', () => toggleModal('ProfilPop'));
+
+    function burgermenu() {
+            const sideBar = document.getElementById('burgerbar')
+            sideBar.classList.toggle('hidden');
+        }
 </script>
 </body>
 
