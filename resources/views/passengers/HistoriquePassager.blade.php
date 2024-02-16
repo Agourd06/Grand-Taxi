@@ -59,7 +59,7 @@
                                     <form action="/favorit" method="POST">
                                         @csrf
                                         <input type="hidden" name="favori" value="0">
-                                        <input type="hidden" name="routeId" value="{{ $route->id }}">
+                                        <input type="hidden" name="tripname" value="{{ $route->trip }}">
                                         <button type="submit"> <svg xmlns="http://www.w3.org/2000/svg" id="Layer_2"
                                                 data-name="Layer 1" width="34" height="34"
                                                 viewBox="0 0 122.88 107.39">
@@ -76,7 +76,7 @@
                                         @csrf
 
                                         <input type="hidden" name="favori" value="1">
-                                        <input type="hidden" name="routeId" value="{{ $route->id }}">
+                                        <input type="hidden" name="tripname" value="{{ $route->trip }}">
 
                                         <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1"
                                                 data-name="Layer 1" width="34" height="34"

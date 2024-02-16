@@ -146,14 +146,14 @@ class PassagerController extends Controller
     {
         $request->validate([
             'favori' => 'required',
-            'routeId' => 'required',
+            'tripname' => 'required',
 
         ]);
 
 
 
 
-        Route::where('id', $request->routeId)
+        Route::where('trip', $request->tripname)
             ->update([
                 'favori' => $request->favori,
 
