@@ -33,7 +33,7 @@
 
     <section class="flex min-h-screen mt-8 flex-col  md:flex-row">
         <!-------------------------------------------------------------Filter------------------------------------------------- -->
-        <div class="md:w-[19%] md:ml-auto md:mt-12 mb-8 md:mb-0 flex flex-col items-center">
+        <div class="md:w-[19%]  md:ml-auto md:mt-12 mb-8 md:mb-0 flex flex-col items-center">
             {{-- filter by Traji --}}
 
             <form id="filterForm" action="/filter" method="POST" class="mb-8 flex items-center flex-col">
@@ -54,14 +54,14 @@
 
                 </div>
 
-                <label for="filterSelect" class="text-md font-bold mb-2">Top Rating Drivers :</label>
+                <label for="filterSelect" class="text-md font-bold mb-2"> Drivers Rating :</label>
 
                 <div class="flex gap-8 mb-6">
                     <select id="filterSelect" name="filterNote"
                         class="border-0 cursor-pointer rounded-md outline-none  drop-shadow-lg bg-white  hover:text-white w-60 md:w-40 duration-300 hover:bg-black ">
                         <option value="{{ null }}">none</option>
 
-                        <option  class="cursor-pointer" value="5">5 Stars</option>
+                        <option class="cursor-pointer" value="5">5 Stars</option>
                         <option class="cursor-pointer" value="4">4 Stars</option>
                         <option class="cursor-pointer" value="3">3 Stars</option>
                         <option class="cursor-pointer" value="2">2 Stars</option>
@@ -84,12 +84,57 @@
                     </select>
                 </div>
                 <div class="w-1/2 mr-4">
-                    <button type="submit" class="text-gray-900 duration-500 hover:text-white border border-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-8 py-2  text-center me-2 mb-2 ">Filter</button>
+                    <button type="submit"
+                        class="text-gray-900 duration-500 hover:text-white border border-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-8 py-2  text-center me-2 mb-2 ">Filter</button>
 
                 </div>
 
             </form>
-            
+
+            <h1 class="mb-2 font-bold">Top Rating Drivers</h1>
+            <div class="bg-white w-[95%] mx-auto md:w-full  font-[sans-serif] mb-4">
+
+                <div>
+                    <div class="grid grid-cols-3 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1 gap-4">
+                        @foreach ($topRates as $chauffeur)
+                            <div
+                                class="bg-white rounded-lg  transition-all duration-300">
+                                <img src="{{ asset('storage/image/' . $chauffeur->user->profile_image) }}"
+                                    alt="Blog Post 1" class="w-full h-32 object-cover" />
+                                <div class="p-6">
+                                    <div class="flex justify-between">
+                                        <h3 class="lg:text-xl w-full md:text-md text-[12px] font-bold text-gray-800 mb-2">
+                                        {{ $chauffeur->user->name }}</h3>
+                                        <div class="flex items-center md:gap-2">
+
+                                            
+                                            <svg class="md:w-4 md:h-4 w-3 h-3 text-yellow-300 me-1" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 22 20">
+                                            <path
+                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                        </svg>
+                                        <p class="md:text-md text-[12px]">{{ $chauffeur->Average }}</p>
+                                        </div>
+
+                                    </div>
+                                    
+                                    <p class="text-gray-600 text-[12px] md:text-sm">{{ $chauffeur->trip }}</p>
+
+                                </div>
+                                <form action="/reserveration" method="post">
+                                    @csrf
+                                    <input type="hidden" value="{{ $chauffeur->id }}" name="driverId">
+                                    <button type="submit" name="wikiId"
+                                        class=" w-full text-[10px] md:text-[15px] py-2 md:mr-4 lg:mr-0 bg-black rounded-b-md duration-300 hover:bg-[#EACE00]  text-white"
+                                        value="">Reserve Road</button>
+                                </form>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
 
 
         </div>
@@ -106,7 +151,7 @@
 
                 @foreach ($chauffeurs as $chauffeur)
                     <div
-                        class="md:flex w-[95%] cursor-pointer md:flex-col lg:flex-row  lg:max-h-[35vh] min-h-fit bg-slate-100 rounded-xl p-4 md:p-0  hover:scale-105 mb-8 md:mb-6">
+                        class="md:flex w-[95%]  md:flex-col lg:flex-row  lg:max-h-[35vh] min-h-fit bg-slate-100 rounded-xl p-4 md:p-0  hover:scale-105 mb-8 md:mb-6">
                         <img class="lg:max-w-[20%] w-[50%]  lg:min-h-[25vh] max-h-[5%]  md:max-h-auto md:rounded-xl rounded-xl mx-auto lg:mx-0"
                             src="{{ asset('storage/image/' . $chauffeur->user->profile_image) }}" alt=""
                             width="384" height="512">
@@ -147,7 +192,8 @@
                                 @if ((int) $chauffeur->Average > 0)
                                     <div class="flex items-center justify-center md:justify-start">
                                         <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 22 20">
                                             <path
                                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
                                         </svg>
@@ -159,7 +205,8 @@
                                 @else
                                     <div class="flex items-center justify-center md:justify-start">
                                         <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 22 20">
                                             <path
                                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
                                         </svg>

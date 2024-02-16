@@ -19,8 +19,9 @@
             <div class="flex items-center">
                 <div class="flex items-center gap-2 ml-4">
                     <a href="/admin" class="w-24 h-18 mr-2 "><img src="{{ asset('storage/image/' . 'taxista.png') }}"
-                        alt="logo"  />
-                </a>                    <p
+                            alt="logo" />
+                    </a>
+                    <p
                         class="text-transparent bg-clip-text  text-[20px] font-bold bg-gradient-to-r from-[#EACE00] to-[#3a3300]">
                         Administration</p>
 
@@ -100,10 +101,7 @@
             </div>
             <!-- --------------------------------SideBar ----------------------------- -->
 
-            <div class="flex-1 p-4 w-full md:w-1/2">
-                <div class="w-full">
-                    <h1></h1>
-                </div>
+            <div class=" flex-1 p-4 w-full md:w-1/2">
 
                 <div class="mt-8 md:flex md:justify-rounded  space-x-0 space-y-2 md:space-x-4 md:space-y-0">
                     <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/3 lg:w-1/2">
@@ -171,14 +169,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-2 md:flex md:justify-rounded   space-x-0 space-y-2 md:space-x-4 md:space-y-0">
 
-
-
-
-
-
-                </div>
                 <div class="mt-8 bg-white p-4 shadow rounded-lg mx-auto min-h-1/2">
 
                     <h2 class="text-gray-500 text-lg font-semibold pb-4">Reservations</h2>
@@ -195,7 +186,7 @@
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left md:text-[15px] text-[12px] font-semibold text-white">
-                                        Date
+                                        Trip Date
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left md:text-[15px] text-[12px] font-semibold text-white">
@@ -218,7 +209,7 @@
                                             {{ $Resrvation->trip }}
                                         </td>
                                         <td class="pl-2 py-4 md:text-[15px] text-[12px]">
-                                            {{ $Resrvation->date }}
+                                            {{ str_replace('T', ' ', $Resrvation->date) }}
                                         </td>
 
 

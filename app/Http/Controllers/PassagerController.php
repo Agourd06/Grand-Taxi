@@ -36,7 +36,12 @@ class PassagerController extends Controller
             }
 
             $chauffeurs = $query->get();
-
+            $topRates = Chauffeur::with('user')
+            ->where('Desponability', 'Available')
+            ->orderBy('average', 'desc')
+            ->limit(3)
+            ->get();
+        
             $trips = Chauffeur::with('user')->where('Desponability', 'Available')->groupBy('trip')->get();
             $carTypes = Chauffeur::with('user')->where('Desponability', 'Available')->groupBy('VoitureType')->get();
 
@@ -45,6 +50,7 @@ class PassagerController extends Controller
             return view('passengers.passager', [
                 'chauffeurs' => $chauffeurs,
                 'trips' => $trips,
+                'topRates' => $topRates,
                 'carTypes' => $carTypes,
                 'scrollToId' => 'DriversContainer',
             ]);
