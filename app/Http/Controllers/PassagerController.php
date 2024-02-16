@@ -166,7 +166,11 @@ class PassagerController extends Controller
 
         $userId = Auth::id();
         $passagerId = Passager::where('user_id', $userId)->value('id');
-        $favoritRoads = route::where('favori', '1')->where('passager_id', $passagerId)->orderby('id', 'DESC')->get();
+$favoritRoads = Route::where('favori', '1')
+    ->where('passager_id', $passagerId)
+    ->orderBy('id', 'DESC')
+    ->groupby('trip')
+    ->get();
 
 
 

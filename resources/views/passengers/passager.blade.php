@@ -36,13 +36,13 @@
         <div class="md:w-[19%] md:ml-auto md:mt-12 mb-8 md:mb-0 flex flex-col items-center">
             {{-- filter by Traji --}}
 
-            <form id="filterForm" action="/filter" method="POST" class="mb-8 flex justify-center flex-col">
+            <form id="filterForm" action="/filter" method="POST" class="mb-8 flex items-center flex-col">
                 @csrf
 
                 <label for="filterSelect" class="text-md font-bold mb-2">Trips :</label>
                 <div class="flex gap-8 mb-6">
                     <select id="filterSelect" name="filtertrip"
-                        class="border-0 cursor-pointer rounded-full outline-none  drop-shadow-md bg-black text-white hover:text-black w-60 md:w-40 duration-300 hover:bg-yellow-100 ">
+                        class="border-0 cursor-pointer rounded-md outline-none  drop-shadow-lg bg-white  hover:text-white w-60 md:w-40 duration-300 hover:bg-black ">
 
                         <option value="{{ null }}">none</option>
 
@@ -58,14 +58,14 @@
 
                 <div class="flex gap-8 mb-6">
                     <select id="filterSelect" name="filterNote"
-                        class="border-0 cursor-pointer rounded-full outline-none  drop-shadow-md bg-black text-white hover:text-black w-60 md:w-40 duration-300 hover:bg-yellow-100 ">
+                        class="border-0 cursor-pointer rounded-md outline-none  drop-shadow-lg bg-white  hover:text-white w-60 md:w-40 duration-300 hover:bg-black ">
                         <option value="{{ null }}">none</option>
 
-                        <option value="5">5 Stars</option>
-                        <option value="4">4 Stars</option>
-                        <option value="3">3 Stars</option>
-                        <option value="2">2 Stars</option>
-                        <option value="1">1 Stars</option>
+                        <option  class="cursor-pointer" value="5">5 Stars</option>
+                        <option class="cursor-pointer" value="4">4 Stars</option>
+                        <option class="cursor-pointer" value="3">3 Stars</option>
+                        <option class="cursor-pointer" value="2">2 Stars</option>
+                        <option class="cursor-pointer" value="1">1 Stars</option>
 
                     </select>
 
@@ -75,7 +75,7 @@
                 <div class="flex gap-8 mb-6">
 
                     <select id="filterSelect" name="filterCars"
-                        class="border-0 cursor-pointer rounded-full px-4 outline-none drop-shadow-md bg-black  text-white hover:text-black w-60 md:w-40 duration-300 hover:bg-yellow-100 ">
+                        class="border-0 cursor-pointer rounded-md px-4 outline-none drop-shadow-lg bg-white   hover:text-white w-60 md:w-40 duration-300 hover:bg-black ">
                         <option value="{{ null }}">none</option>
                         @foreach ($carTypes as $filtarg)
                             <option value="{{ $filtarg->VoitureType }}">{{ $filtarg->VoitureType }}
@@ -83,9 +83,13 @@
                         @endforeach
                     </select>
                 </div>
-                <button type="submit" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-8 py-2  text-center me-2 mb-2 ">Filter</button>
+                <div class="w-1/2 mr-4">
+                    <button type="submit" class="text-gray-900 duration-500 hover:text-white border border-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-8 py-2  text-center me-2 mb-2 ">Filter</button>
+
+                </div>
 
             </form>
+            
 
 
         </div>
@@ -106,7 +110,7 @@
                         <img class="lg:max-w-[20%] w-[50%]  lg:min-h-[25vh] max-h-[5%]  md:max-h-auto md:rounded-xl rounded-xl mx-auto lg:mx-0"
                             src="{{ asset('storage/image/' . $chauffeur->user->profile_image) }}" alt=""
                             width="384" height="512">
-                        <div class="pt-6 lg:w-[37%] w-full md:p-8  text-center md:text-left space-y-4">
+                        <div class="p-6 lg:w-[37%] w-full md:p-8  text-center md:text-left space-y-4">
                             <div class="text-[#EACE00] text-2xl font-bold">
                                 <h1>{{ $chauffeur->user->name }}</h1>
                             </div>
@@ -187,7 +191,7 @@
                 @endforeach
             @else
                 <div class=" flex justify-center h-32 items-center">
-                    <p class=" text-[16px] md:text-[20px]"> No matching drivers found.
+                    <p class=" text-[16px] md:text-[20px] "> No matching drivers found.
                     </p>
                 </div>
             @endif

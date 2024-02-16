@@ -17,14 +17,14 @@
 
     <div class="bg-white p-4 font-[sans-serif]">
         <div>
-            <div id="wikisContainer" class="min-h-full w-full lg:w-[70%] mx-auto rounded-xl ">
+            <div id="" class="min-h-full w-full lg:w-[70%] mx-auto rounded-xl ">
                 <h2 class="text-4xl font-extrabold text-gray-800 mb-8">History</h2>
                 @if ($routes && count($routes) > 0)
 
                     @foreach ($routes as $route)
                         <div class="md:flex w-[95%] mb-6  lg:max-h-[25vh] min-h-fit bg-slate-100 rounded-xl  ">
                             <div class="w-full p-4 md:p-5">
-                                <div class="w-full  text-center md:text-left space-y-4">
+                                <div class="  text-center md:text-left space-y-4">
 
 
                                     <div class=" w-full  ">
@@ -41,11 +41,11 @@
                                 </div>
 
 
-                                <div class="flex md:gap-10 gap-2 md:flex-row flex-col  w-full my-6 md:my-0 md:mt-12 ">
-                                    <p class=" font-bold  lg:text-[14px] text-[12px]">Reservation date :
-                                        {{ $route->date }}
+                                <div class="flex md:gap-10 gap-2 md:flex-row flex-col   my-6 md:my-0 md:mt-12 ">
+                                    <p class=" font-bold  lg:text-[13px] text-[12px]">Trip date :
+                                        {{ str_replace('T', ' ', $route->date) }}
                                     </p>
-                                    <p class=" font-bold  lg:text-[14px] text-[12px]">Trip Date :
+                                    <p class=" font-bold  lg:text-[13px] text-[12px]">Reservation Date :
                                         {{ $route->created_at }}
                                     </p>
                                 </div>
@@ -95,89 +95,27 @@
                              
                                 <input type="hidden" value="" name="driverId">
                                 <input type="hidden" name="routeId" value=""> --}}
-
-                                <div class="flex space-x-3">
-                                    <p class="font-bold  lg:text-[14px] text-[12px]"> Rate This Trip :
-                                    </p>
-                                    <form action="/noter" method="post">
-                                        @csrf
-                                        <input type="hidden" name="note" value="1" id="one">
-                                        <input type="hidden" value="{{ $route->id }}" name="routeId" id="one">
-                                        @if ($route->Note !== '1')
+                                <div class="flex space-x-3 items-center">
+                                    <p class="font-bold  lg:text-[13px] text-[12px]"> Rate This Trip  :</p>
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <form action="/noter" method="post">
+                                            @csrf
+                                            <input type="hidden" name="note" value="{{ $i }}" id="note{{ $i }}">
+                                            <input type="hidden" value="{{ $route->id }}" name="routeId" id="routeId{{ $i }}">
+                                
+                                            @php
+                                                $isActive = $route->Note == $i;
+                                            @endphp
+                                            
                                             <button type="submit"
-                                                class="w-[25px] md:text-[17px] text-bold hover:bg-[#EACE00] h-[25px] rounded-md bg-[#EACE00]/50 text-[12px]  flex text-white justify-center items-center ">1
+                                                class="w-[25px] md:text-[17px] text-bold  {{ $isActive ? 'hover:bg-[#EACE00] bg-yellow-400 text-white rounded-md' : 'hover:bg-yellow-400 text-white bg-yellow-200 text-[12px] rounded-md' }} flex justify-center items-center">
+                                                {{ $i }}
                                             </button>
-                                        @else
-                                            <button type="submit"
-                                                class="w-[25px] md:text-[17px] text-bold bg-[#EACE00] h-[25px] rounded-md hover:bg-[#EACE00]/50 text-[12px]  flex text-white justify-center items-center ">1
-                                            </button>
-                                        @endif
-
-                                    </form>
-
-                                    <form action="/noter" method="post">
-                                        @csrf
-                                        <input type="hidden" name="note" value="2" id="two">
-                                        <input type="hidden" value="{{ $route->id }}" name="routeId" id="one">
-
-                                        @if ($route->Note !== '2')
-                                            <button type="submit"
-                                                class="w-[25px] md:text-[17px] text-bold hover:bg-[#EACE00] h-[25px] rounded-md bg-[#EACE00]/50 text-[12px]  flex text-white justify-center items-center ">2
-                                            </button>
-                                        @else
-                                            <button type="submit"
-                                                class="w-[25px] md:text-[17px] text-bold bg-[#EACE00] h-[25px] rounded-md hover:bg-[#EACE00]/50 text-[12px]  flex text-white justify-center items-center ">2
-                                            </button>
-                                        @endif
-                                    </form>
-                                    <form action="/noter" method="post">
-                                        @csrf
-                                        <input type="hidden" name="note" value="3" id="three">
-                                        <input type="hidden" value="{{ $route->id }}" name="routeId" id="one">
-
-                                        @if ($route->Note !== '3')
-                                            <button type="submit"
-                                                class="w-[25px] md:text-[17px] text-bold hover:bg-[#EACE00] h-[25px] rounded-md bg-[#EACE00]/50 text-[12px]  flex text-white justify-center items-center ">3
-                                            </button>
-                                        @else
-                                            <button type="submit"
-                                                class="w-[25px] md:text-[17px] text-bold bg-[#EACE00] h-[25px] rounded-md hover:bg-[#EACE00]/50 text-[12px]  flex text-white justify-center items-center ">3
-                                            </button>
-                                        @endif
-                                    </form>
-                                    <form action="/noter" method="post">
-                                        @csrf
-                                        <input type="hidden" name="note" value="4" id="four">
-                                        <input type="hidden" value="{{ $route->id }}" name="routeId"
-                                            id="one">
-
-                                        @if ($route->Note !== '4')
-                                            <button type="submit"
-                                                class="w-[25px] md:text-[17px] text-bold hover:bg-[#EACE00] h-[25px] rounded-md bg-[#EACE00]/50 text-[12px]  flex text-white justify-center items-center ">4
-                                            </button>
-                                        @else
-                                            <button type="submit"
-                                                class="w-[25px] md:text-[17px] text-bold bg-[#EACE00] h-[25px] rounded-md hover:bg-[#EACE00]/50 text-[12px]  flex text-white justify-center items-center ">4
-                                            </button>
-                                        @endif
-                                    </form>
-                                    <form action="/noter" method="post">
-                                        @csrf
-                                        <input type="hidden" name="note" value="5" id="five">
-                                        <input type="hidden" value="{{ $route->id }}" name="routeId"
-                                            id="one">
-
-                                        @if ($route->Note !== '5')
-                                            <button type="submit"
-                                                class="w-[25px] md:text-[17px] text-bold hover:bg-[#EACE00] h-[25px] rounded-md bg-[#EACE00]/50 text-[12px]  flex text-white justify-center items-center ">5
-                                            </button>
-                                        @else
-                                            <button type="submit"
-                                                class="w-[25px] md:text-[17px] text-bold bg-[#EACE00] h-[25px] rounded-md hover:bg-[#EACE00]/50 text-[12px]  flex text-white justify-center items-center ">5
-                                            </button>
-                                        @endif
-                                    </form>
+                                        </form>
+                                    @endfor
                                 </div>
+                    
+
                             </div>
                             <form action="/DeletHistorique" method="POST"
                                 class="bg-red-600 w-12 rounded-r-xl flex items-center justify-center hover:bg-red-400 cursor-pointer">
